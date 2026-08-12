@@ -534,7 +534,10 @@ body {
 
     width: min(90%, 500px);
 
-    padding: 40px 30px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 45px 30px 35px;
 
     text-align: center;
 
@@ -547,7 +550,7 @@ body {
             rgba(255,0,153,.08)
         );
 
-    border: 2px solid rgba(255,255,255,.25);
+    border: 2px solid rgba(255,255,255,.35);
 
     backdrop-filter: blur(20px);
 
@@ -566,10 +569,12 @@ body {
     transition:
         opacity .8s ease,
         transform 1s cubic-bezier(.17,.67,.35,1.35);
+
+    z-index: 100;
 }
 
 #greeting-card.show {
-    opacity: 20;
+    opacity: 1;
 
     transform:
         translateY(0)
@@ -863,4 +868,328 @@ body {
         flex-direction: column;
         gap: 8px;
     }
+}
+/* =========================================
+   SOBRE BRILLANTE
+========================================= */
+
+.letter-container {
+    position: relative;
+
+    width: 190px;
+    height: 145px;
+
+    margin: 30px auto 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    z-index: 50;
+}
+
+
+/* BRILLO DETRÁS DEL SOBRE */
+
+.letter-glow {
+    position: absolute;
+
+    width: 180px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(255, 60, 150, 0.65),
+        rgba(130, 70, 255, 0.35),
+        transparent 70%
+    );
+
+    filter: blur(15px);
+
+    animation: envelopeGlow 2s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes envelopeGlow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+}
+
+
+/* SOBRE */
+
+.envelope {
+    position: relative;
+
+    width: 150px;
+    height: 100px;
+
+    animation: envelopeBounce 2s ease-in-out infinite;
+
+    transition: transform 0.3s ease;
+
+    z-index: 2;
+}
+
+
+@keyframes envelopeBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+
+}
+
+
+/* EFECTO AL PASAR EL MOUSE */
+
+.letter-container:hover .envelope {
+    transform: scale(1.08) rotate(-2deg);
+}
+
+
+/* PARTE TRASERA DEL SOBRE */
+
+.envelope-back {
+    position: absolute;
+
+    width: 150px;
+    height: 100px;
+
+    left: 0;
+    top: 0;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #ff69ad,
+        #d91f70
+    );
+
+    border: 2px solid rgba(255, 255, 255, 0.5);
+
+    box-shadow:
+        0 0 15px #ff3d91,
+        0 0 35px rgba(255, 61, 145, 0.7);
+}
+
+
+/* PAPEL QUE SE VE DENTRO */
+
+.envelope-paper {
+    position: absolute;
+
+    width: 125px;
+    height: 65px;
+
+    left: 12px;
+    top: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #ffe6f3
+    );
+
+    color: #a52d68;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8);
+
+    z-index: 2;
+}
+
+
+/* SOLAPA SUPERIOR */
+
+.envelope-flap {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    left: 0;
+    top: 0;
+
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-top: 55px solid #ff9ccc;
+
+    z-index: 5;
+
+    filter: drop-shadow(
+        0 2px 4px rgba(100, 0, 50, 0.4)
+    );
+}
+
+
+/* PARTE DELANTERA */
+
+.envelope-front {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 75px solid #e74488;
+    border-right: 75px solid #e74488;
+
+    border-top: 50px solid transparent;
+
+    z-index: 6;
+}
+
+
+/* SELLO BRILLANTE */
+
+.envelope-seal {
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    left: 61px;
+    top: 39px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle at 35% 30%,
+        #ffffff,
+        #ff9ed1 30%,
+        #ff277f 65%,
+        #a9004d
+    );
+
+    box-shadow:
+        0 0 10px #ff3d91,
+        0 0 25px #ff3d91;
+
+    z-index: 10;
+
+    animation: sealGlow 1.5s ease-in-out infinite;
+}
+
+
+@keyframes sealGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 8px #ff3d91,
+            0 0 20px #ff3d91;
+    }
+
+    50% {
+        box-shadow:
+            0 0 15px #ffffff,
+            0 0 30px #ff3d91,
+            0 0 45px #874cff;
+    }
+
+}
+
+
+/* TEXTO ÁBREME */
+
+.envelope-label {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: -5px;
+
+    text-align: center;
+
+    color: #ffd9ef;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 6px #ff3d8d,
+        0 0 15px #ff3d8d;
+
+    animation: envelopeLabel 1.5s ease-in-out infinite;
+
+    z-index: 20;
+}
+
+
+@keyframes envelopeLabel {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+
+}
+@media (max-height: 750px) {
+
+    #greeting-card {
+        max-height: 88vh;
+
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    #greeting-card {
+        width: 90%;
+
+        max-height: 88vh;
+
+        padding:
+            30px
+            20px
+            25px;
+    }
+
 }

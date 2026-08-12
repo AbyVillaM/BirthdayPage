@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" type="image/png" href="pastel.png">
+        <title>¡FELICIDADES!</title>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="gift-wrapper" onclick="openGift()" >
+
+    <div class="open-label">
+        ¡Ábreme!
+    </div>
+
+    <div class="gift-scene">
+
+        <div id="gift-cube">
+
+            <div class="gift-face front">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+            </div>
+
+            <div class="gift-face right">
+                <div class="ribbon-horizontal"></div>
+                <div class="ribbon-vertical"></div>
+            </div>
+
+            <div class="gift-face back">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+            </div>
+
+            <div class="gift-face left">
+                <div class="ribbon-horizontal"></div>
+                <div class="ribbon-vertical"></div>
+            </div>
+
+            <div class="gift-face top">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+            </div>
+
+            <div class="gift-face bottom"></div>
+
+             <div class="gift-bow">
+                <div class="bow-loop bow-left"></div>
+                <div class="bow-loop bow-right"></div>
+                <div class="bow-center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="click-hint"></div>
+
+</div>
+
+
+<div id="greeting-card">
+    <div class="neon-subtitle">
+        ¡FELIZ CUMPLEAÑOS!
+    </div>
+
+    <div class="cake">
+        <div class="cake-top"></div>
+        <div class="cake-body"></div>
+        <div class="cake-candle"></div>
+        <div class="cake-flame"></div>
+    </div>
+
+    <div class="neon-title">
+        ¡Felices
+    </div>
+
+    <div class="neon-age">
+        17
+    </div>
+
+    <div class="neon-footer">
+        Vueltas al sol!
+    </div>
+
+
+
+    <div class="card-metadata">
+        <div>
+            Para Martiza <span></span>
+        </div>
+
+        <div>
+            04 de septiembre de 2026 <span></span>
+        </div>
+    </div>
+    <div class="letter-container">
+    <div class="letter-glow"></div>
+
+<div class="envelope" onclick="openLetter()">
+    <div class="envelope-back"></div>
+
+    <div class="envelope-paper">
+        <span>Para ti 💗</span>
+    </div>
+
+    <div class="envelope-flap"></div>
+    <div class="envelope-front"></div>
+
+    <div class="envelope-seal"></div>
+</div>
+
+<div class="envelope-label">
+    ¡Ábreme!
+</div>
+</div>
+
+</div>
+<script src="script.js"></script>
+<script>
+function openLetter() {
+    window.location.href = "carta.html";
+}
+</script>
+
+</body>
+</html>
