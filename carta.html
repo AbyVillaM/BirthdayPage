@@ -1,43 +1,33 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
+    <link rel="icon" type="image/png" href="assets/images/pastel.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Para ti 💗</title>
-
+    <title>¡FELICIDADES!</title>
     <link rel="stylesheet" href="carta.css">
-
 </head>
 
 <body>
-    <div class="background"></div>
+    <div class="background-globos"></div>
+
+    <audio id="bg-music-carta" loop>
+        <source src="assets/music/cumpleaños.mp3" type="audio/mpeg">
+    </audio>
 
     <main class="page">
-
         <section class="letter">
-
             <div class="letter-shine"></div>
 
             <div class="letter-content">
+                <div class="header-deco"></div>
 
-                <h1>
-                    Para la empleada más salada de la chamba
-                </h1>
-
-                <h2>
-                    Hola Mary
-                </h2>
+                <h1>Para la empleada más salada de la chamba</h1>
 
 
-                <div class="separator">
-                    ✦
-                </div>
-
+                <div class="separator">✦</div>
+                <h2>Hola Mary</h2>
 
                 <p>
                     No quería dejar pasar este día sin darte este pequeño detalle. Me llena
@@ -45,59 +35,73 @@
                     nuestras conversaciones y me siento muy cómoda cada vez que apareces. Gracias por compartir conmigo
                     parte de tu vida, tus pensamientos, experiencias y la buena energía que siempre transmites, esa
                     confianza que hemos construido con el tiempo quiero que sepas que la valoro recíprocamente y que no
-                    doy por sentado, realmente significa mucho para mí.
+                    doy por sentado.
                 </p>
 
-
                 <p>
-                    Se que los 17 son una etapa muy extraña: un puente raro entre la
+                    Sé que los 17 son una etapa muy extraña: un puente raro entre la
                     infancia y las expectativas del mundo adulto, donde a veces te bombardean con que tienes que tener
-                    la vida resuelta, a que te vas a dedicar o saber exactamente quién eres, cuando la realidad es que está bien equivocarse,
-                    sentirse perdida o no tener todas las respuestas todavía. Aprovecha estos años para explorar,
+                    la vida resuelta, a qué te vas a dedicar o saber exactamente quién eres, cuando la realidad es que
+                    está bien equivocarse, sentirse perdida o no tener todas las respuestas todavía. Aprovecha estos
+                    años para explorar,
                     aprender y descubrir lo que de verdad te apasiona, sin cargar con la presión de encajar en lo que
-                    otros esperan de ti.
+                    otros esperan de ti, Nunca dejes de echarle ganas a tus proyectos y metas, pero ten paciencia y no
+                    seas dura contigo
+                    misma en el proceso. Recuerda que aquí tienes un espacio seguro y a alguien con quien contar si
+                    necesitas ayuda, orientación o simplemente ser escuchada sin filtros.
                 </p>
-
 
                 <p>
-                    Nunca dejes de echarle ganas a tus proyectos y metas, pero ten paciencia y no seas dura contigo misma en el
-                    proceso. Recuerda que aquí tienes un espacio seguro y a alguien con quien contar si necesitas ayuda,
-                    orientación o simplemente ser escuchada sin filtros.
+                    A veces se me olvida que no todos han tenido la oportunidad de experimentar lo hermoso que es tener
+                    una verdadera amistad, de esas en las que quieres muchísimo a alguien y sabes que también te quieren
+                    de
+                    corazón. Muchas veces me he disculpado por ser tan parlanchina o por no pensar bien las cosas antes
+                    de hablar, pero quería que entendieras que, para mí, demostrar cariño a mis amigos es algo
+                    completamente normal. Me gusta darles detalles, hacerlos sentir especiales y recordarles lo
+                    importantes que son para mí, y eso es justamente lo que quería demostrarte con esto. Así que espero
+                    de corazón que te guste y que puedas recibirlo con el mismo cariño con el que te lo doy.
                 </p>
-
 
                 <p>
-                    Gracias por tu amistad. Espero que esté nuevo
-                    año de vida venga lleno de momentos felices, nuevos aprendizajes y lo disfrutes mucho con tus seres
-                    queridos. Deseo de todo corazón que lo que reste de este año venga lleno de puras cosas buenas.¡Te
-                    mando un fuerte abrazo y mis mejores deseos!
-                </p>
-
-
-                <p class="special">
-                    ¡Muchas Felicidades!
+                    Te deseo un año lleno de momentos felices, de personas que te sumen, de aprendizajes y experiencias
+                    que te hagan crecer. Espero que este nuevo año de vida te traiga muchas cosas bonitas y que puedas
+                    cumplir poco a poco todo aquello que deseas. Recuerda que siempre tienes a alguien con quien
+                    contar.. ¡Te mando un fuerte abrazo y mis mejores deseos!
                 </p>
 
                 <div class="signature">
-
-                    Con cariño Aby<span>♡</span>
-
-                    <br>
+                    Con cariño Aby <span>♡</span>
                 </div>
 
-                <button class="back-button" onclick="goBack()">
-                    ← Volver
-                </button>
+                <div class="cake-wish-container">
+                    <div class="cake-wish">
+                        <div class="cake-wish-top"></div>
+                        <div class="cake-wish-body"></div>
+                        <div class="cake-wish-candle" id="candle-wish">
+                            <div class="cake-wish-flame" id="flame-wish"></div>
+                        </div>
+                        <div class="cake-wish-decoration"></div>
+                    </div>
 
+                <br>
+                <div>
+                    <h5>Llego la hora, piensa en eso que más quieres, respira
+                    profundo, suelta todo lo demás, sopla y pide un deseo.</h5>
+                </div>
+                <br>
+                    <button class="wish-button" id="wishButton" onclick="apagarVela()">
+                        Pedir deseo
+                    </button>
+
+                    <p class="wish-message" id="wishMessage" style="display:none;">
+                        ¡De corazon espero que tu deseo se haga realidad!
+                    </p>
+                </div>
             </div>
-
         </section>
-
     </main>
 
-
     <script src="carta.js"></script>
-
 </body>
 
 </html>

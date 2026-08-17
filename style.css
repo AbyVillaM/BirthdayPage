@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,1188 +7,495 @@
 body {
     min-height: 100vh;
     overflow: hidden;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-family: Arial, sans-serif;
-
-    background:
-        radial-gradient(circle at 15% 20%, #ff4f9a55, transparent 25%),
-        radial-gradient(circle at 85% 20%, #7c4dff55, transparent 25%),
-        radial-gradient(circle at 50% 100%, #00d9ff33, transparent 35%),
-        linear-gradient(135deg, #160021, #2d0750, #090014);
-
+    background: radial-gradient(circle at 15% 20%, #ff4f9a55, transparent 25%),
+                radial-gradient(circle at 85% 20%, #7c4dff55, transparent 25%),
+                radial-gradient(circle at 50% 100%, #00d9ff33, transparent 35%),
+                linear-gradient(135deg, #160021, #2d0750, #090014);
     color: white;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
 
-/* REGALO */
+* {
+    scrollbar-width: none;
+}
 
 #gift-wrapper {
     width: 360px;
     height: 450px;
-
     position: relative;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     perspective: 1200px;
-
     cursor: pointer;
-
-    transition: transform .4s ease;
+    transition: transform 0.4s ease;
 }
 
 #gift-wrapper:hover {
     transform: translateY(-8px);
 }
 
-
-/* TEXTO SUPERIOR */
-
 .open-label {
     position: absolute;
     top: 30px;
-
     padding: 10px 28px;
-
     border-radius: 30px;
-
-    background: linear-gradient(
-        135deg,
-        #ff3d8d,
-        #874cff
-    );
-
-    box-shadow:
-        0 0 15px #ff3d8d,
-        0 0 35px #874cff;
-
+    background: linear-gradient(135deg, #ff3d8d, #874cff);
+    box-shadow: 0 0 15px #ff3d8d, 0 0 35px #874cff;
     font-size: 17px;
     font-weight: bold;
     letter-spacing: 1px;
-
     z-index: 30;
-
     animation: labelFloat 2s ease-in-out infinite;
 }
 
 @keyframes labelFloat {
-
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-7px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
 }
-
-
-/* MOVIMIENTO 3D */
 
 .gift-scene {
     width: 180px;
     height: 180px;
-
     position: relative;
-
     transform-style: preserve-3d;
 }
-
-
-/* CUBO */
 
 #gift-cube {
     width: 180px;
     height: 180px;
-
     position: absolute;
-
     transform-style: preserve-3d;
-
-    transform:
-        rotateX(-15deg)
-        rotateY(-35deg);
-
+    transform: rotateX(-15deg) rotateY(-35deg);
     animation: rotateGift 7s linear infinite;
-
     transition: transform 1.5s ease;
 }
 
 @keyframes rotateGift {
-
-    0% {
-        transform:
-            rotateX(-15deg)
-            rotateY(-35deg);
-    }
-
-    100% {
-        transform:
-            rotateX(-15deg)
-            rotateY(325deg);
-    }
+    0% { transform: rotateX(-15deg) rotateY(-35deg); }
+    100% { transform: rotateX(-15deg) rotateY(325deg); }
 }
-
-
-/* CARAS DEL CUBO */
 
 .gift-face {
     position: absolute;
-
     width: 180px;
     height: 180px;
-
-    border: 2px solid rgba(255,255,255,.3);
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff4d91,
-            #d71969
-        );
-
-    box-shadow:
-        inset 0 0 35px rgba(255,255,255,.15),
-        inset 0 -25px 40px rgba(100,0,50,.25);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #ff4d91, #d71969);
+    box-shadow: inset 0 0 35px rgba(255, 255, 255, 0.15),
+                inset 0 -25px 40px rgba(100, 0, 50, 0.25);
 }
 
-.front {
-    transform: translateZ(90px);
-}
-
-.back {
-    transform:
-        rotateY(180deg)
-        translateZ(90px);
-}
-
-.right {
-    transform:
-        rotateY(90deg)
-        translateZ(90px);
-}
-
-.left {
-    transform:
-        rotateY(-90deg)
-        translateZ(90px);
-}
-
+.front { transform: translateZ(90px); }
+.back { transform: rotateY(180deg) translateZ(90px); }
+.right { transform: rotateY(90deg) translateZ(90px); }
+.left { transform: rotateY(-90deg) translateZ(90px); }
 .top {
-    transform:
-        rotateX(90deg)
-        translateZ(90px);
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff76ae,
-            #e82d7c
-        );
+    transform: rotateX(90deg) translateZ(90px);
+    background: linear-gradient(135deg, #ff76ae, #e82d7c);
 }
-
 .bottom {
-    transform:
-        rotateX(-90deg)
-        translateZ(90px);
-
+    transform: rotateX(-90deg) translateZ(90px);
     background: #9b1750;
 }
 
-
-/* CINTA VERTICAL */
-
 .ribbon-vertical {
     position: absolute;
-
     width: 34px;
     height: 100%;
-
     left: 50%;
     top: 0;
-
     transform: translateX(-50%);
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffd43b,
-            #fff2a1,
-            #ffad00
-        );
-
-    box-shadow:
-        0 0 12px rgba(255,211,59,.7);
+    background: linear-gradient(90deg, #ffd43b, #fff2a1, #ffad00);
+    box-shadow: 0 0 12px rgba(255, 211, 59, 0.7);
 }
-
-
-/* CINTA HORIZONTAL */
 
 .ribbon-horizontal {
     position: absolute;
-
     width: 100%;
     height: 34px;
-
     left: 0;
     top: 50%;
-
     transform: translateY(-50%);
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffd43b,
-            #fff2a1,
-            #ffad00
-        );
-
-    box-shadow:
-        0 0 12px rgba(255,211,59,.7);
+    background: linear-gradient(180deg, #ffd43b, #fff2a1, #ffad00);
+    box-shadow: 0 0 12px rgba(255, 211, 59, 0.7);
 }
-
-
-/* MOÑITO */
 
 .gift-bow {
     position: absolute;
-
     width: 120px;
     height: 65px;
-
     left: 30px;
     top: -42px;
-
     transform-style: preserve-3d;
-
     z-index: 40;
 }
 
 .bow-loop {
     position: absolute;
-
     width: 62px;
     height: 45px;
-
     top: 8px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff06a,
-            #ffb300
-        );
-
+    background: linear-gradient(135deg, #fff06a, #ffb300);
     border: 3px solid #ffd52e;
-
-    box-shadow:
-        0 0 18px #ffc400;
-
+    box-shadow: 0 0 18px #ffc400;
     border-radius: 70% 20% 70% 20%;
 }
 
-.bow-left {
-    left: 0;
-    transform: rotate(-25deg);
-}
-
-.bow-right {
-    right: 0;
-    transform:
-        rotate(25deg)
-        scaleX(-1);
-}
+.bow-left { left: 0; transform: rotate(-25deg); }
+.bow-right { right: 0; transform: rotate(25deg) scaleX(-1); }
 
 .bow-center {
     position: absolute;
-
     width: 32px;
     height: 32px;
-
     left: 44px;
     top: 19px;
-
     border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #fff9a8,
-            #ffc400 60%,
-            #ff7b00
-        );
-
-    box-shadow:
-        0 0 18px #ffd000;
-
+    background: radial-gradient(circle at 35% 30%, #fff9a8, #ffc400 60%, #ff7b00);
+    box-shadow: 0 0 18px #ffd000;
     z-index: 5;
 }
-
-
-/* MINI REGALOS */
-
-.mini-gift {
-    position: absolute;
-
-    width: 55px;
-    height: 55px;
-
-    border-radius: 5px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7250ff,
-            #b52cff
-        );
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.4),
-        0 0 20px #874cff66;
-
-    transform-style: preserve-3d;
-
-    z-index: 5;
-}
-
-.mini-gift-one {
-    left: -35px;
-    bottom: -10px;
-
-    transform: rotate(-8deg);
-}
-
-.mini-gift-two {
-    right: -35px;
-    bottom: -5px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #00c9ff,
-            #0072ff
-        );
-
-    transform: rotate(9deg);
-}
-
-.mini-ribbon-v {
-    position: absolute;
-
-    width: 10px;
-    height: 100%;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffe45c,
-            #fff6a5,
-            #ffc400
-        );
-}
-
-.mini-ribbon-h {
-    position: absolute;
-
-    width: 100%;
-    height: 10px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffe45c,
-            #fff6a5,
-            #ffc400
-        );
-}
-
-.mini-bow {
-    position: absolute;
-
-    width: 28px;
-    height: 14px;
-
-    top: -8px;
-    left: 13px;
-
-    border-radius: 50%;
-
-    background: #ffd42a;
-
-    box-shadow:
-        0 0 10px #ffd42a;
-}
-
-
-/* TEXTO INFERIOR */
 
 .click-hint {
     position: absolute;
-
     bottom: 35px;
-
     color: #ffd8ef;
-
     font-size: 14px;
-
     letter-spacing: 1px;
-
-    opacity: .7;
-
+    opacity: 0.7;
     animation: hintPulse 1.6s infinite;
 }
 
 @keyframes hintPulse {
-
-    0%, 100% {
-        opacity: .45;
-    }
-
-    50% {
-        opacity: 1;
-    }
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
 }
-
-
-/* CAJA REGALO */
 
 .opened #gift-cube {
     animation: giftDisappear 1.4s forwards;
 }
 
 @keyframes giftDisappear {
-
-    0% {
-        transform:
-            rotateX(-15deg)
-            rotateY(-35deg)
-            scale(1);
-        opacity: 1;
-    }
-
-    45% {
-        transform:
-            rotateX(-15deg)
-            rotateY(180deg)
-            scale(1.15);
-        opacity: 1;
-    }
-
-    100% {
-        transform:
-            rotateX(-10deg)
-            rotateY(360deg)
-            scale(.05);
-        opacity: 0;
-    }
-}
-
-.opened .mini-gift {
-    animation: miniGiftPop .8s forwards;
-}
-
-@keyframes miniGiftPop {
-
-    to {
-        transform:
-            translateY(-100px)
-            scale(1.3)
-            rotate(20deg);
-
-        opacity: 0;
-    }
+    0% { transform: rotateX(-15deg) rotateY(-35deg) scale(1); opacity: 1; }
+    45% { transform: rotateX(-15deg) rotateY(180deg) scale(1.15); opacity: 1; }
+    100% { transform: rotateX(-10deg) rotateY(360deg) scale(0.05); opacity: 0; }
 }
 
 .opened .open-label,
 .opened .click-hint {
-    animation: fadeOut .4s forwards;
+    animation: fadeOut 0.4s forwards;
 }
 
 @keyframes fadeOut {
-
-    to {
-        opacity: 0;
-    }
+    to { opacity: 0; }
 }
-
-
-/* CONTORNO TARJETA*/
 
 #greeting-card {
     position: fixed;
-
     width: min(90%, 500px);
-
     max-height: 90vh;
     overflow-y: auto;
-
     padding: 45px 30px 35px;
-
     text-align: center;
-
     border-radius: 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.13),
-            rgba(255,0,153,.08)
-        );
-
-    border: 2px solid rgba(255,255,255,.35);
-
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 0, 153, 0.08));
+    border: 2px solid rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(20px);
-
-    box-shadow:
-        0 0 30px #ff3cac66,
-        0 0 80px #784cff44;
-
+    box-shadow: 0 0 30px #ff3cac66, 0 0 80px #784cff44;
     opacity: 0;
-
-    transform:
-        translateY(70px)
-        scale(.7);
-
+    transform: translateY(70px) scale(0.7);
     pointer-events: none;
-
-    transition:
-        opacity .8s ease,
-        transform 1s cubic-bezier(.17,.67,.35,1.35);
-
+    transition: opacity 0.8s ease, transform 1s cubic-bezier(0.17, 0.67, 0.35, 1.35);
     z-index: 100;
+}
+
+#greeting-card::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+#greeting-card {
+    scrollbar-width: none;
 }
 
 #greeting-card.show {
     opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
+    transform: translateY(0) scale(1);
     pointer-events: auto;
 }
 
-
-/* DECORACION TARJETA */
-
-.card-decoration {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-
-    margin-bottom: 18px;
-}
-
-.card-decoration span {
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #ff4ca0;
-
-    box-shadow:
-        0 0 10px #ff4ca0;
-}
-
-.card-decoration span:nth-child(2) {
-    background: #ffd43b;
-
-    box-shadow:
-        0 0 10px #ffd43b;
-}
-
-.card-decoration span:nth-child(3) {
-    background: #61dcff;
-
-    box-shadow:
-        0 0 10px #61dcff;
-}
-
-
-/* TEXTO NEON*/
-
 .neon-subtitle {
     color: #ff9de2;
-
     font-size: 18px;
-
-    text-shadow:
-        0 0 5px #ff3cac,
-        0 0 15px #ff3cac,
-        0 0 30px #ff3cac;
+    text-shadow: 0 0 5px #ff3cac, 0 0 15px #ff3cac, 0 0 30px #ff3cac;
 }
 
 .neon-title {
     font-size: 52px;
-
     font-weight: 900;
-
     color: white;
-
-    text-shadow:
-        0 0 8px white,
-        0 0 18px #ff3cac,
-        0 0 35px #ff3cac;
+    text-shadow: 0 0 8px white, 0 0 18px #ff3cac, 0 0 35px #ff3cac;
 }
 
 .neon-age {
     font-size: 110px;
-
-    line-height: .9;
-
+    line-height: 0.9;
     font-weight: 900;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #ff8cdd,
-            #a56bff,
-            #53d8ff
-        );
-
+    background: linear-gradient(135deg, #ffffff, #ff8cdd, #a56bff, #53d8ff);
     -webkit-background-clip: text;
     background-clip: text;
-
     color: transparent;
-
-    filter:
-        drop-shadow(0 0 15px #ff3cac);
+    filter: drop-shadow(0 0 15px #ff3cac);
 }
 
 .neon-footer {
     margin-top: 12px;
-
     font-size: 34px;
-
     font-weight: bold;
-
     color: #ffe4f8;
-
-    text-shadow:
-        0 0 8px #ff3cac,
-        0 0 20px #ff3cac;
+    text-shadow: 0 0 8px #ff3cac, 0 0 20px #ff3cac;
 }
-
-
-/* PASTEL UWU */
 
 .cake {
     position: relative;
-
     width: 80px;
     height: 70px;
-
     margin: 20px auto;
 }
 
 .cake-body {
     position: absolute;
-
     width: 70px;
     height: 38px;
-
     left: 5px;
     bottom: 5px;
-
     border-radius: 8px 8px 14px 14px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ff9acb,
-            #e94f9a
-        );
-
-    box-shadow:
-        0 0 20px #ff4ca066;
+    background: linear-gradient(180deg, #ff9acb, #e94f9a);
+    box-shadow: 0 0 20px #ff4ca066;
 }
 
 .cake-top {
     position: absolute;
-
     width: 78px;
     height: 20px;
-
     left: 1px;
     top: 25px;
-
     border-radius: 50%;
-
     background: #fff0fa;
-
-    box-shadow:
-        inset 0 -5px 0 #ffc4e3;
+    box-shadow: inset 0 -5px 0 #ffc4e3;
 }
 
 .cake-candle {
     position: absolute;
-
     width: 8px;
     height: 25px;
-
     left: 36px;
     top: 0;
-
-    background:
-        repeating-linear-gradient(
-            45deg,
-            #7c4dff 0 4px,
-            #ffffff 4px 8px
-        );
-
+    background: repeating-linear-gradient(45deg, #7c4dff 0 4px, #ffffff 4px 8px);
     border-radius: 4px;
 }
 
 .cake-flame {
     position: absolute;
-
     width: 12px;
     height: 17px;
-
     left: 34px;
     top: -15px;
-
-    background:
-        radial-gradient(
-            circle at 50% 70%,
-            #fff6a0,
-            #ffb000 55%,
-            #ff4d00
-        );
-
+    background: radial-gradient(circle at 50% 70%, #fff6a0, #ffb000 55%, #ff4d00);
     border-radius: 50% 50% 50% 50%;
-
-    filter:
-        drop-shadow(0 0 8px #ffb000);
-
+    filter: drop-shadow(0 0 8px #ffb000);
     animation: flame 1s ease-in-out infinite;
 }
 
 @keyframes flame {
-
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform:
-            scale(1.15)
-            translateY(-2px);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15) translateY(-2px); }
 }
-
-
-/* MENSAJE */
-
-.card-message {
-    max-width: 380px;
-
-    margin: 25px auto;
-
-    color: #ffe9f8;
-
-    font-size: 16px;
-
-    line-height: 1.6;
-}
-
 
 .card-metadata {
     display: flex;
-
     justify-content: center;
-
     gap: 25px;
-
     margin-top: 25px;
-
     padding-top: 20px;
-
-    border-top:
-        1px solid rgba(255,255,255,.2);
-
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffc9ed;
-
     font-size: 14px;
 }
 
 .card-metadata span {
     color: white;
-
     font-weight: bold;
 }
 
-
-/* GIRO DEL REGALO*/
-
-@media (max-width: 500px) {
-
-    #gift-wrapper {
-        transform: scale(.85);
-    }
-
-    #gift-wrapper:hover {
-        transform: scale(.85);
-    }
-
-    #greeting-card {
-        padding: 30px 20px;
-    }
-
-    .neon-title {
-        font-size: 44px;
-    }
-
-    .neon-age {
-        font-size: 90px;
-    }
-
-    .neon-footer {
-        font-size: 28px;
-    }
-
-    .card-metadata {
-        flex-direction: column;
-        gap: 8px;
-    }
-}
-/* =========================================
-   SOBRE BRILLANTE
-========================================= */
-
 .letter-container {
     position: relative;
-
     width: 190px;
     height: 145px;
-
     margin: 30px auto 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     cursor: pointer;
-
     z-index: 50;
 }
 
-
-/* BRILLO DETRÁS DEL SOBRE */
-
 .letter-glow {
     position: absolute;
-
     width: 180px;
     height: 120px;
-
     border-radius: 50%;
-
-    background: radial-gradient(
-        ellipse,
-        rgba(255, 60, 150, 0.65),
-        rgba(130, 70, 255, 0.35),
-        transparent 70%
-    );
-
+    background: radial-gradient(ellipse, rgba(255, 60, 150, 0.65), rgba(130, 70, 255, 0.35), transparent 70%);
     filter: blur(15px);
-
     animation: envelopeGlow 2s ease-in-out infinite;
-
     pointer-events: none;
 }
 
-
 @keyframes envelopeGlow {
-
-    0%,
-    100% {
-        opacity: 0.5;
-        transform: scale(0.9);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.15);
-    }
-
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); }
 }
-
-
-/* SOBRE */
 
 .envelope {
     position: relative;
-
     width: 150px;
     height: 100px;
-
     animation: envelopeBounce 2s ease-in-out infinite;
-
     transition: transform 0.3s ease;
-
     z-index: 2;
 }
 
-
 @keyframes envelopeBounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-9px);
-    }
-
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
 }
-
-
-/* EFECTO AL PASAR EL MOUSE */
 
 .letter-container:hover .envelope {
     transform: scale(1.08) rotate(-2deg);
 }
 
-
-/* PARTE TRASERA DEL SOBRE */
-
 .envelope-back {
     position: absolute;
-
     width: 150px;
     height: 100px;
-
     left: 0;
     top: 0;
-
     border-radius: 8px;
-
-    background: linear-gradient(
-        135deg,
-        #ff69ad,
-        #d91f70
-    );
-
+    background: linear-gradient(135deg, #ff69ad, #d91f70);
     border: 2px solid rgba(255, 255, 255, 0.5);
-
-    box-shadow:
-        0 0 15px #ff3d91,
-        0 0 35px rgba(255, 61, 145, 0.7);
+    box-shadow: 0 0 15px #ff3d91, 0 0 35px rgba(255, 61, 145, 0.7);
 }
-
-
-/* PAPEL QUE SE VE DENTRO */
 
 .envelope-paper {
     position: absolute;
-
     width: 125px;
     height: 65px;
-
     left: 12px;
     top: 5px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 5px;
-
-    background: linear-gradient(
-        180deg,
-        #ffffff,
-        #ffe6f3
-    );
-
+    background: linear-gradient(180deg, #ffffff, #ffe6f3);
     color: #a52d68;
-
     font-size: 13px;
     font-weight: bold;
-
-    box-shadow:
-        0 0 10px rgba(255, 255, 255, 0.8);
-
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     z-index: 2;
 }
 
-
-/* SOLAPA SUPERIOR */
-
 .envelope-flap {
     position: absolute;
-
     width: 0;
     height: 0;
-
     left: 0;
     top: 0;
-
     border-left: 75px solid transparent;
     border-right: 75px solid transparent;
     border-top: 55px solid #ff9ccc;
-
     z-index: 5;
-
-    filter: drop-shadow(
-        0 2px 4px rgba(100, 0, 50, 0.4)
-    );
+    filter: drop-shadow(0 2px 4px rgba(100, 0, 50, 0.4));
 }
-
-
-/* PARTE DELANTERA */
 
 .envelope-front {
     position: absolute;
-
     left: 0;
     bottom: 0;
-
     width: 0;
     height: 0;
-
     border-left: 75px solid #e74488;
     border-right: 75px solid #e74488;
-
     border-top: 50px solid transparent;
-
     z-index: 6;
 }
 
-
-/* SELLO BRILLANTE */
-
 .envelope-seal {
     position: absolute;
-
     width: 28px;
     height: 28px;
-
     left: 61px;
     top: 39px;
-
     border-radius: 50%;
-
-    background: radial-gradient(
-        circle at 35% 30%,
-        #ffffff,
-        #ff9ed1 30%,
-        #ff277f 65%,
-        #a9004d
-    );
-
-    box-shadow:
-        0 0 10px #ff3d91,
-        0 0 25px #ff3d91;
-
+    background: radial-gradient(circle at 35% 30%, #ffffff, #ff9ed1 30%, #ff277f 65%, #a9004d);
+    box-shadow: 0 0 10px #ff3d91, 0 0 25px #ff3d91;
     z-index: 10;
-
     animation: sealGlow 1.5s ease-in-out infinite;
 }
 
-
 @keyframes sealGlow {
-
-    0%,
-    100% {
-        box-shadow:
-            0 0 8px #ff3d91,
-            0 0 20px #ff3d91;
-    }
-
-    50% {
-        box-shadow:
-            0 0 15px #ffffff,
-            0 0 30px #ff3d91,
-            0 0 45px #874cff;
-    }
-
+    0%, 100% { box-shadow: 0 0 8px #ff3d91, 0 0 20px #ff3d91; }
+    50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #ff3d91, 0 0 45px #874cff; }
 }
-
-
-/* TEXTO ÁBREME */
 
 .envelope-label {
     position: absolute;
-
     left: 0;
     right: 0;
-
     bottom: -5px;
-
     text-align: center;
-
     color: #ffd9ef;
-
     font-size: 15px;
     font-weight: bold;
-
     letter-spacing: 1px;
-
-    text-shadow:
-        0 0 6px #ff3d8d,
-        0 0 15px #ff3d8d;
-
+    text-shadow: 0 0 6px #ff3d8d, 0 0 15px #ff3d8d;
     animation: envelopeLabel 1.5s ease-in-out infinite;
-
     z-index: 20;
 }
 
-
 @keyframes envelopeLabel {
-
-    0%,
-    100% {
-        opacity: 0.6;
-        transform: translateY(0);
-    }
-
-    50% {
-        opacity: 1;
-        transform: translateY(-5px);
-    }
-
-}
-@media (max-height: 750px) {
-
-    #greeting-card {
-        max-height: 88vh;
-
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-
+    0%, 100% { opacity: 0.6; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
 }
 
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99;
+}
 
 @media (max-width: 500px) {
+    #gift-wrapper { transform: scale(0.85); }
+    #gift-wrapper:hover { transform: scale(0.85); }
+    #greeting-card { padding: 30px 20px; }
+    .neon-title { font-size: 44px; }
+    .neon-age { font-size: 90px; }
+    .neon-footer { font-size: 28px; }
+    .card-metadata { flex-direction: column; gap: 8px; }
+}
 
-    #greeting-card {
-        width: 90%;
-
-        max-height: 88vh;
-
-        padding:
-            30px
-            20px
-            25px;
-    }
-
+@media (max-height: 750px) {
+    #greeting-card { max-height: 88vh; padding-top: 30px; padding-bottom: 30px; }
 }
