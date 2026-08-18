@@ -9,10 +9,31 @@
 </head>
 <body>
 
-    <!-- MÚSICA DE FONDO - SOLO UNA VEZ -->
-    <audio id="bg-music" loop autoplay>
+    <audio id="bg-music" loop>
         <source src="assets/music/cumpleaños.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- PANTALLA DE RELOJ -->
+    <div id="reloj-screen">
+        <div class="reloj-content">
+            <div class="reloj-fecha">
+                <span id="reloj-dia">03</span>
+                <span class="reloj-sep">de</span>
+                <span id="reloj-mes">septiembre</span>
+                <span class="reloj-sep">de</span>
+                <span id="reloj-anio">2026</span>
+            </div>
+            
+            <div class="reloj-hora" id="reloj-hora">
+                <span id="reloj-horas">23</span>
+                <span class="reloj-dos-puntos">:</span>
+                <span id="reloj-minutos">59</span>
+                <span class="reloj-dos-puntos">:</span>
+                <span id="reloj-segundos">57</span>
+            </div>
+            
+        </div>
+    </div>
 
     <!-- CONTENEDOR DEL REGALO -->
     <div id="gift-wrapper" onclick="openGift()">
@@ -48,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <div class="click-hint">Haz clic para abrir</div>
+        <div class="click-hint"></div>
     </div>
 
     <!-- TARJETA DE SALUDO -->
@@ -67,16 +88,16 @@
         <div class="neon-footer">Vueltas al sol!</div>
 
         <div class="card-metadata">
-            <div>04 de septiembre de 2026 <span></span></div>
+            <div>Para Martiza </div>
+            <div>04 de septiembre de 2026 </div>
         </div>
 
-        <!-- SOBRE PARA LA CARTA -->
         <div class="letter-container">
             <div class="letter-glow"></div>
             <div class="envelope" onclick="openLetter()">
                 <div class="envelope-back"></div>
                 <div class="envelope-paper">
-                    <span>Para ti 💗</span>
+                    <span>Para ti </span>
                 </div>
                 <div class="envelope-flap"></div>
                 <div class="envelope-front"></div>
@@ -86,7 +107,6 @@
         </div>
     </div>
 
-    <!-- LIENZO PARA CONFETI -->
     <canvas id="confetti-canvas"></canvas>
 
     <script src="script.js"></script>
