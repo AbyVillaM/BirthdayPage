@@ -1,3 +1,31 @@
+function crearGlobosVerticales() {
+    var container = document.getElementById('globos-container');
+    if (!container) return;
+    
+    var emojis = ['🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈'];
+    var cantidad = 25;
+    
+    for (var i = 0; i < cantidad; i++) {
+        var globo = document.createElement('div');
+        globo.className = 'globos-vertical';
+        globo.textContent = emojis[i % emojis.length];
+        
+        var posX = Math.random() * 95 + 2;
+        globo.style.setProperty('--pos-x', posX + '%');
+        
+        var delay = Math.random() * 12;
+        globo.style.setProperty('--delay', delay + 's');
+        
+        var size = 35 + Math.random() * 40;
+        globo.style.fontSize = size + 'px';
+        
+        var duration = 10 + Math.random() * 10;
+        globo.style.animationDuration = duration + 's';
+        
+        container.appendChild(globo);
+    }
+}
+
 var music = document.getElementById('bg-music-carta');
 
 try {
@@ -53,13 +81,33 @@ function apagarVela() {
         flame.style.display = 'none';
         message.style.display = 'block';
         
+        try {
+            if (music && !music.paused) {
+                localStorage.setItem('musicTime', music.currentTime);
+                localStorage.setItem('musicPlaying', 'true');
+            }
+        } catch(e) {}
+        
         setTimeout(function() {
             window.location.href = "index.html";
         }, 5000);
     }, 600);
 }
+function goBack() {
+    try {
+        if (music && !music.paused) {
+            localStorage.setItem('musicTime', music.currentTime);
+            localStorage.setItem('musicPlaying', 'true');
+        }
+    } catch(e) {}
+    window.location.href = "index.html";
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Crear globos verticales
+    crearGlobosVerticales();
+    
+    // Animación del título
     var title = document.querySelector('.letter-content h1');
     if (title) {
         title.style.opacity = '0';

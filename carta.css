@@ -27,7 +27,9 @@ body {
 * {
     scrollbar-width: none;
 }
-
+/* ============================================
+   GLOBOS QUE SUBEN VERTICALMENTE
+   ============================================ */
 .background-globos {
     position: fixed;
     inset: 0;
@@ -36,33 +38,59 @@ body {
     overflow: hidden;
 }
 
-.background-globos::before {
-    content: "🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈";
-    position: absolute;
-    font-size: 60px;
-    letter-spacing: 40px;
-    white-space: nowrap;
-    top: -20px;
-    left: 0;
-    width: 200%;
-    opacity: 0.15;
-    animation: floatGlobos 25s linear infinite;
-    transform: rotate(-5deg);
-}
-
-.background-globos::after {
-    content: "🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈";
+/* GLOBOS SUBIENDO - Versión vertical */
+.globos-vertical {
     position: absolute;
     font-size: 50px;
-    letter-spacing: 35px;
-    white-space: nowrap;
-    bottom: -10px;
-    right: 0;
-    width: 200%;
-    opacity: 0.10;
-    animation: floatGlobos 30s linear infinite reverse;
-    transform: rotate(3deg);
+    animation: subirGlobo 12s linear infinite;
+    opacity: 0.15;
+    pointer-events: none;
+    left: var(--pos-x);
+    animation-delay: var(--delay);
 }
+
+@keyframes subirGlobo {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.15;
+    }
+    50% {
+        transform: translateY(30vh) rotate(10deg) scale(1);
+        opacity: 0.15;
+    }
+    95% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateY(-20vh) rotate(-5deg) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Tamaños diferentes para los globos */
+.globos-vertical:nth-child(1) { font-size: 45px; animation-duration: 14s; }
+.globos-vertical:nth-child(2) { font-size: 60px; animation-duration: 10s; }
+.globos-vertical:nth-child(3) { font-size: 40px; animation-duration: 16s; }
+.globos-vertical:nth-child(4) { font-size: 55px; animation-duration: 11s; }
+.globos-vertical:nth-child(5) { font-size: 35px; animation-duration: 13s; }
+.globos-vertical:nth-child(6) { font-size: 50px; animation-duration: 9s; }
+.globos-vertical:nth-child(7) { font-size: 42px; animation-duration: 15s; }
+.globos-vertical:nth-child(8) { font-size: 58px; animation-duration: 12s; }
+.globos-vertical:nth-child(9) { font-size: 38px; animation-duration: 17s; }
+.globos-vertical:nth-child(10) { font-size: 52px; animation-duration: 10s; }
+.globos-vertical:nth-child(11) { font-size: 45px; animation-duration: 14s; }
+.globos-vertical:nth-child(12) { font-size: 55px; animation-duration: 11s; }
+.globos-vertical:nth-child(13) { font-size: 40px; animation-duration: 13s; }
+.globos-vertical:nth-child(14) { font-size: 50px; animation-duration: 9s; }
+.globos-vertical:nth-child(15) { font-size: 60px; animation-duration: 16s; }
+.globos-vertical:nth-child(16) { font-size: 35px; animation-duration: 12s; }
+.globos-vertical:nth-child(17) { font-size: 48px; animation-duration: 15s; }
+.globos-vertical:nth-child(18) { font-size: 55px; animation-duration: 10s; }
+.globos-vertical:nth-child(19) { font-size: 42px; animation-duration: 14s; }
+.globos-vertical:nth-child(20) { font-size: 50px; animation-duration: 11s; }
 
 @keyframes floatGlobos {
     0% { transform: translateX(0) rotate(-5deg); }

@@ -25,7 +25,6 @@ function actualizarReloj() {
         document.getElementById('reloj-horas').textContent = String(horas).padStart(2, '0');
     }
     
-    // Cuando cambia a 00:00:00
 if (horas === 24) {
     horas = 0;
     minutos = 0;
@@ -37,7 +36,6 @@ if (horas === 24) {
     document.getElementById('reloj-segundos').textContent = '00';
     document.getElementById('reloj-dia').textContent = '04';
     
-    // Efecto de brillo
     document.getElementById('reloj-dia').classList.add('cambiando');
     document.querySelector('.reloj-hora').classList.add('brillante');
     

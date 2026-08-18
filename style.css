@@ -499,9 +499,6 @@ body {
 @media (max-height: 750px) {
     #greeting-card { max-height: 88vh; padding-top: 30px; padding-bottom: 30px; }
 }
-/* ============================================
-   RELOJ - FONDO NEGRO, TEXTO BLANCO
-   ============================================ */
 #reloj-screen {
     position: fixed;
     inset: 0;
@@ -599,7 +596,6 @@ body {
     margin-top: 20px;
 }
 
-/* EFECTO CUANDO CAMBIA A 00:00:00 */
 #reloj-dia.cambiando {
     color: #ffffff;
     text-shadow: 0 0 60px rgba(255, 255, 255, 0.5), 0 0 120px rgba(255, 255, 255, 0.2);
@@ -612,7 +608,6 @@ body {
     text-shadow: 0 0 60px rgba(255, 255, 255, 0.4), 0 0 120px rgba(255, 255, 255, 0.15);
 }
 
-/* PARTICULAS DE CELEBRACIÓN */
 .celebracion-particula {
     position: fixed;
     pointer-events: none;
@@ -626,7 +621,6 @@ body {
     100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg); opacity: 0; }
 }
 
-/* RESPONSIVE */
 @media (max-width: 500px) {
     .reloj-content { padding: 30px 20px; min-width: auto; width: 90%; }
     .reloj-hora { font-size: 48px; letter-spacing: 4px; padding: 12px 0; }
