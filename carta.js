@@ -59,10 +59,32 @@ document.addEventListener('click', function() {
     }
 });
 
+function escribirMensaje(elemento, texto, velocidad, callback) {
+    var i = 0;
+    elemento.textContent = '';
+    elemento.classList.remove('completado');
+    
+    function escribir() {
+        if (i < texto.length) {
+            elemento.textContent += texto.charAt(i);
+            i++;
+            setTimeout(escribir, velocidad);
+        } else {
+            elemento.classList.add('completado');
+            if (callback) callback();
+        }
+    }
+    
+    escribir();
+}
+
 function apagarVela() {
     var flame = document.getElementById('flame-wish');
     var button = document.getElementById('wishButton');
     var message = document.getElementById('wishMessage');
+    var transicion = document.getElementById('transicion-oscura');
+    var textoElemento = document.getElementById('texto-mecanografiado');
+    var emojiElemento = document.querySelector('.mensaje-final .emoji');
     
     if (!flame || button.disabled) return;
     
@@ -81,16 +103,38 @@ function apagarVela() {
         flame.style.display = 'none';
         message.style.display = 'block';
         
-        try {
-            if (music && !music.paused) {
-                localStorage.setItem('musicTime', music.currentTime);
-                localStorage.setItem('musicPlaying', 'true');
-            }
-        } catch(e) {}
-        
         setTimeout(function() {
-            window.location.href = "index.html";
-        }, 5000);
+            transicion.classList.add('active');
+            
+            setTimeout(function() {
+                emojiElemento.style.opacity = '1';
+            }, 500);
+            
+            setTimeout(function() {
+                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! :3', 140, function() {
+                    setTimeout(function() {
+                        transicion.classList.remove('active');
+                        transicion.classList.add('mantener-negro');
+                        
+                        if (music) {
+                            music.pause();
+                            music.currentTime = 0;
+                            localStorage.setItem('musicPlaying', 'false');
+                            localStorage.setItem('musicTime', '0');
+                        }
+                        
+                        setTimeout(function() {
+                            localStorage.removeItem('musicPlaying');
+                            localStorage.removeItem('musicTime');
+                            window.location.href = "index.html";
+                        }, 1500);
+                        
+                    }, 1000);
+                });
+            }, 800);
+            
+        }, 800);
+        
     }, 600);
 }
 function goBack() {
@@ -104,10 +148,8 @@ function goBack() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Crear globos verticales
     crearGlobosVerticales();
     
-    // Animación del título
     var title = document.querySelector('.letter-content h1');
     if (title) {
         title.style.opacity = '0';

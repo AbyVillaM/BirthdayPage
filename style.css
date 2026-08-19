@@ -37,6 +37,30 @@ body {
     perspective: 1200px;
     cursor: pointer;
     transition: transform 0.4s ease;
+    opacity: 0;
+    transform: scale(0.3);
+    animation: giftAppear 1.5s cubic-bezier(0.17, 0.67, 0.35, 1.35) 0.5s forwards;
+}
+
+#gift-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.15), transparent 70%);
+    animation: giftGlow 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes giftAppear {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes giftGlow {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.7; }
 }
 
 #gift-wrapper:hover {
@@ -499,6 +523,7 @@ body {
 @media (max-height: 750px) {
     #greeting-card { max-height: 88vh; padding-top: 30px; padding-bottom: 30px; }
 }
+
 #reloj-screen {
     position: fixed;
     inset: 0;
@@ -512,118 +537,161 @@ body {
 
 .reloj-content {
     text-align: center;
-    padding: 50px 60px;
-    min-width: 350px;
+    padding: 20px;
+    width: 100%;
+    max-width: 480px;
 }
 
 .reloj-fecha {
-    font-size: 28px;
-    color: #ffffff;
+    font-size: clamp(18px, 4vw, 28px);
+    color: #ffffff !important;
     font-weight: 300;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
     font-family: 'Georgia', serif;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.2) !important;
+}
+
+.reloj-fecha span {
+    color: #ffffff !important;
 }
 
 #reloj-dia {
-    font-size: 34px;
+    font-size: clamp(22px, 5vw, 34px);
     font-weight: 700;
-    color: #ffffff;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.4), 0 0 100px rgba(255, 255, 255, 0.15) !important;
     transition: all 0.5s ease;
 }
 
+#reloj-dia.cambiando {
+    color: #ffffff !important;
+    text-shadow: 0 0 60px rgba(255, 255, 255, 0.6), 0 0 120px rgba(255, 255, 255, 0.3) !important;
+    transform: scale(1.05);
+}
+
 .reloj-sep {
-    color: rgba(255, 255, 255, 0.3);
-    margin: 0 5px;
+    color: rgba(255, 255, 255, 0.3) !important;
+    margin: 0 4px;
 }
 
 #reloj-mes {
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff !important;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2) !important;
+    opacity: 1 !important;
+    font-weight: 400;
 }
 
 #reloj-anio {
-    color: rgba(255, 255, 255, 0.4);
+    color: #ffffff !important;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.15) !important;
+    opacity: 1 !important;
+    font-weight: 400;
 }
 
 .reloj-hora {
-    font-size: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 900;
     font-family: 'Courier New', monospace;
     color: #ffffff;
-    padding: 20px 0;
-    letter-spacing: 8px;
+    padding: 5px 0;
+    letter-spacing: 0px;
+    gap: 5px;
+    font-size: 70px;
 }
 
 #reloj-horas {
-    color: #ffffff;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+    color: #ffffff !important;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.25) !important;
+    width: 75px;
+    text-align: center;
+    display: inline-block;
 }
 
 #reloj-minutos {
-    color: #ffffff;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+    color: #ffffff !important;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.2) !important;
+    width: 75px;
+    text-align: center;
+    display: inline-block;
 }
 
 #reloj-segundos {
-    color: #ffffff;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.15) !important;
     animation: segundosBrillo 1s ease-in-out infinite;
+    width: 75px;
+    text-align: center;
+    display: inline-block;
 }
 
 @keyframes segundosBrillo {
     0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; text-shadow: 0 0 60px rgba(255, 255, 255, 0.3); }
+    50% { opacity: 1; text-shadow: 0 0 60px rgba(255, 255, 255, 0.4) !important; }
 }
 
 .reloj-dos-puntos {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5) !important;
     animation: puntosPulse 1s ease-in-out infinite;
     font-weight: 900;
+    font-size: 70px;
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    padding: 0 2px;
 }
 
 @keyframes puntosPulse {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.8; }
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
 }
 
 .reloj-texto {
     color: rgba(255, 255, 255, 0.3);
-    font-size: 15px;
-    letter-spacing: 4px;
+    font-size: clamp(11px, 2vw, 14px);
+    letter-spacing: 2px;
     font-weight: 300;
-    margin-top: 20px;
-}
-
-#reloj-dia.cambiando {
-    color: #ffffff;
-    text-shadow: 0 0 60px rgba(255, 255, 255, 0.5), 0 0 120px rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+    margin-top: 12px;
 }
 
 .reloj-hora.brillante #reloj-horas,
 .reloj-hora.brillante #reloj-minutos,
 .reloj-hora.brillante #reloj-segundos {
-    text-shadow: 0 0 60px rgba(255, 255, 255, 0.4), 0 0 120px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 60px rgba(255, 255, 255, 0.5), 0 0 120px rgba(255, 255, 255, 0.2) !important;
 }
 
-.celebracion-particula {
-    position: fixed;
-    pointer-events: none;
-    z-index: 1001;
-    font-size: 30px;
-    animation: particulaVuela 1.5s ease-out forwards;
+@media (max-width: 768px) {
+    .reloj-hora { font-size: 55px; gap: 4px; }
+    #reloj-horas, #reloj-minutos, #reloj-segundos { width: 58px; }
+    .reloj-dos-puntos { font-size: 55px; width: 24px; }
+    .reloj-fecha { font-size: clamp(15px, 3vw, 20px); }
+    #reloj-dia { font-size: clamp(18px, 4vw, 26px); }
 }
 
-@keyframes particulaVuela {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg); opacity: 0; }
+@media (max-width: 480px) {
+    .reloj-content { padding: 15px 8px; max-width: 100%; }
+    .reloj-hora { font-size: 40px; gap: 3px; }
+    #reloj-horas, #reloj-minutos, #reloj-segundos { width: 42px; font-size: 40px; }
+    .reloj-dos-puntos { font-size: 40px; width: 16px; }
+    .reloj-fecha { font-size: 13px; gap: 2px; }
+    #reloj-dia { font-size: 16px; }
+    #reloj-mes { font-size: 13px; }
+    #reloj-anio { font-size: 13px; }
 }
 
-@media (max-width: 500px) {
-    .reloj-content { padding: 30px 20px; min-width: auto; width: 90%; }
-    .reloj-hora { font-size: 48px; letter-spacing: 4px; padding: 12px 0; }
-    .reloj-fecha { font-size: 20px; }
-    #reloj-dia { font-size: 24px; }
+@media (max-width: 360px) {
+    .reloj-hora { font-size: 30px; gap: 2px; }
+    #reloj-horas, #reloj-minutos, #reloj-segundos { width: 32px; font-size: 30px; }
+    .reloj-dos-puntos { font-size: 30px; width: 12px; }
+    .reloj-fecha { font-size: 11px; }
+    #reloj-dia { font-size: 13px; }
+    #reloj-mes { font-size: 11px; }
+    #reloj-anio { font-size: 11px; }
 }

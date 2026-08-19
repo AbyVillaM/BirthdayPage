@@ -65,36 +65,8 @@ function terminarReloj() {
         
         startConfetti();
         
-        crearCelebracion();
         
     }, 500);
-}
-
-function crearCelebracion() {
-    var emojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎆', '🎇', '🥳'];
-    
-    for (var i = 0; i < 30; i++) {
-        var particula = document.createElement('div');
-        particula.style.cssText = 'position:fixed;pointer-events:none;z-index:1001;font-size:' + (20 + Math.random() * 30) + 'px;';
-        particula.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        var x = window.innerWidth / 2 + (Math.random() - 0.5) * 200;
-        var y = window.innerHeight / 2 + (Math.random() - 0.5) * 100;
-        var tx = (Math.random() - 0.5) * 600;
-        var ty = -200 - Math.random() * 400;
-        
-        particula.style.left = x + 'px';
-        particula.style.top = y + 'px';
-        particula.style.setProperty('--tx', tx + 'px');
-        particula.style.setProperty('--ty', ty + 'px');
-        particula.style.animation = 'particulaVuela 1.5s ease-out forwards';
-        
-        document.body.appendChild(particula);
-        
-        setTimeout(function() {
-            particula.remove();
-        }, 1800);
-    }
 }
 
 var music = document.getElementById('bg-music');
@@ -102,7 +74,6 @@ var music = document.getElementById('bg-music');
 function iniciarMusica() {
     if (music) {
         music.play().then(function() {
-            console.log('🎵 Música iniciada');
             localStorage.setItem('musicPlaying', 'true');
         }).catch(function() {
             console.log('⏳ Esperando interacción...');

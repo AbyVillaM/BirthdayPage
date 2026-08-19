@@ -27,9 +27,7 @@ body {
 * {
     scrollbar-width: none;
 }
-/* ============================================
-   GLOBOS QUE SUBEN VERTICALMENTE
-   ============================================ */
+
 .background-globos {
     position: fixed;
     inset: 0;
@@ -38,7 +36,6 @@ body {
     overflow: hidden;
 }
 
-/* GLOBOS SUBIENDO - Versión vertical */
 .globos-vertical {
     position: absolute;
     font-size: 50px;
@@ -50,27 +47,13 @@ body {
 }
 
 @keyframes subirGlobo {
-    0% {
-        transform: translateY(100vh) rotate(0deg) scale(0.8);
-        opacity: 0;
-    }
-    5% {
-        opacity: 0.15;
-    }
-    50% {
-        transform: translateY(30vh) rotate(10deg) scale(1);
-        opacity: 0.15;
-    }
-    95% {
-        opacity: 0.15;
-    }
-    100% {
-        transform: translateY(-20vh) rotate(-5deg) scale(0.9);
-        opacity: 0;
-    }
+    0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
+    5% { opacity: 0.15; }
+    50% { transform: translateY(30vh) rotate(10deg) scale(1); opacity: 0.15; }
+    95% { opacity: 0.15; }
+    100% { transform: translateY(-20vh) rotate(-5deg) scale(0.9); opacity: 0; }
 }
 
-/* Tamaños diferentes para los globos */
 .globos-vertical:nth-child(1) { font-size: 45px; animation-duration: 14s; }
 .globos-vertical:nth-child(2) { font-size: 60px; animation-duration: 10s; }
 .globos-vertical:nth-child(3) { font-size: 40px; animation-duration: 16s; }
@@ -91,11 +74,6 @@ body {
 .globos-vertical:nth-child(18) { font-size: 55px; animation-duration: 10s; }
 .globos-vertical:nth-child(19) { font-size: 42px; animation-duration: 14s; }
 .globos-vertical:nth-child(20) { font-size: 50px; animation-duration: 11s; }
-
-@keyframes floatGlobos {
-    0% { transform: translateX(0) rotate(-5deg); }
-    100% { transform: translateX(-50%) rotate(-5deg); }
-}
 
 .page {
     width: 100%;
@@ -145,26 +123,11 @@ body {
 }
 
 @keyframes rollOpen {
-    0% {
-        opacity: 0;
-        transform: scaleY(0.02) scaleX(0.6);
-        border-radius: 50%;
-    }
-    20% {
-        opacity: 1;
-        transform: scaleY(0.1) scaleX(0.8);
-    }
-    50% {
-        transform: scaleY(0.6) scaleX(1);
-    }
-    80% {
-        transform: scaleY(1.02) scaleX(1);
-    }
-    100% {
-        opacity: 1;
-        transform: scaleY(1) scaleX(1);
-        border-radius: 20px;
-    }
+    0% { opacity: 0; transform: scaleY(0.02) scaleX(0.6); border-radius: 50%; }
+    20% { opacity: 1; transform: scaleY(0.1) scaleX(0.8); }
+    50% { transform: scaleY(0.6) scaleX(1); }
+    80% { transform: scaleY(1.02) scaleX(1); }
+    100% { opacity: 1; transform: scaleY(1) scaleX(1); border-radius: 20px; }
 }
 
 .letter-shine {
@@ -174,11 +137,7 @@ body {
     width: 160px;
     height: 500px;
     transform: rotate(20deg);
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 240, 0.20), 
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 240, 0.20), transparent);
     animation: shinePergamino 6s ease-in-out infinite;
     pointer-events: none;
     z-index: 2;
@@ -273,10 +232,6 @@ body {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }
 }
-
-/* ============================================
-   PASTEL PARA PEDIR DESEO
-   ============================================ */
 .cake-wish-container {
     margin-top: 45px;
     padding-top: 30px;
@@ -361,10 +316,7 @@ body {
     top: 42px;
     background: radial-gradient(circle at 30% 30%, #ff6b9d, #c44a7a);
     border-radius: 50%;
-    box-shadow: 
-        25px 0 0 #ffb84d,
-        50px 0 0 #ff6b9d,
-        75px 0 0 #ffb84d;
+    box-shadow: 25px 0 0 #ffb84d, 50px 0 0 #ff6b9d, 75px 0 0 #ffb84d;
 }
 
 .wish-text {
@@ -421,64 +373,172 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
+
+#transicion-oscura {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: transparent;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#transicion-oscura.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#transicion-oscura .circulo-negro {
+    position: absolute;
+    inset: 0;
+    background: #000000;
+    clip-path: circle(0% at center);
+    transition: clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#transicion-oscura.active .circulo-negro {
+    clip-path: circle(100% at center);
+}
+
+#transicion-oscura .mensaje-final {
+    position: relative;
+    z-index: 2001;
+    color: #ffd700;
+    font-size: clamp(20px, 4vw, 34px);
+    font-family: 'Georgia', serif;
+    text-align: center;
+    padding: 20px 25px;
+    opacity: 0;
+    transition: all 0.8s ease;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.15), 0 0 80px rgba(255, 215, 0, 0.08);
+    line-height: 1.8;
+    letter-spacing: 1px;
+    max-width: 90%;
+    pointer-events: none;
+}
+
+#transicion-oscura.active .mensaje-final {
+    opacity: 1;
+}
+
+#transicion-oscura .mensaje-final .emoji {
+    font-size: clamp(35px, 6vw, 55px);
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0;
+    transition: opacity 1s ease 0.5s;
+}
+
+#transicion-oscura.active .mensaje-final .emoji {
+    opacity: 1;
+}
+
+.texto-mecanografiado {
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.2), 0 0 80px rgba(255, 215, 0, 0.1);
+    display: inline-block;
+    min-height: 1.2em;
+}
+
+.texto-mecanografiado::after {
+    content: '|';
+    display: inline-block;
+    animation: cursorParpadeo 0.7s step-end infinite;
+    color: #ffd700;
+    font-weight: 300;
+    margin-left: 2px;
+}
+
+.texto-mecanografiado.completado::after {
+    display: none;
+}
+
+@keyframes cursorParpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#transicion-oscura.mantener-negro {
+    opacity: 1 !important;
+    pointer-events: all;
+}
+
+#transicion-oscura.mantener-negro .circulo-negro {
+    clip-path: circle(100% at center) !important;
+}
+
+#transicion-oscura.mantener-negro .mensaje-final {
+    opacity: 0 !important;
+    transform: scale(1.1) !important;
+    transition: all 0.8s ease;
+}
+
+.celebracion-particula {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1001;
+    font-size: 30px;
+    animation: particulaVuela 1.5s ease-out forwards;
+}
+
+@keyframes particulaVuela {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg); opacity: 0; }
+}
+
+
+body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+.letter {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.letter-content {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.letter-content p {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 650px) {
     .page { padding: 15px 10px; }
-    .letter { 
-        width: 96vw;
-        border-radius: 16px;
-    }
-    .letter-content { 
-        padding: 30px 22px 35px; 
-    }
-    .letter-content h1 { 
-        font-size: 34px; 
-    }
-    .letter-content h2 { 
-        font-size: 18px; 
-    }
-    .letter-content p { 
-        font-size: 15px; 
-        line-height: 2;
-        margin: 16px auto;
-        text-indent: 20px;
-    }
-    .background-globos::before {
-        font-size: 40px;
-        letter-spacing: 25px;
-    }
-    .background-globos::after {
-        font-size: 35px;
-        letter-spacing: 20px;
-    }
-    .cake-wish {
-        transform: scale(0.85);
-    }
-    .wish-button {
-        padding: 12px 30px;
-        font-size: 16px;
-    }
+    .letter { width: 96vw; border-radius: 16px; }
+    .letter-content { padding: 30px 22px 35px; }
+    .letter-content h1 { font-size: 34px; }
+    .letter-content h2 { font-size: 18px; }
+    .letter-content p { font-size: 15px; line-height: 2; margin: 16px auto; text-indent: 20px; }
+    .cake-wish { transform: scale(0.85); }
+    .wish-button { padding: 12px 30px; font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .letter-content { padding: 25px 15px !important; }
+    .letter-content h1 { font-size: 28px !important; }
+    .letter-content p { font-size: 14px !important; line-height: 1.8 !important; text-indent: 15px !important; }
+    .letter { width: 98vw !important; border-radius: 12px !important; max-height: 90vh !important; }
+    .cake-wish { transform: scale(0.7); }
+    .wish-button { padding: 10px 25px; font-size: 14px; }
 }
 
 @media (max-width: 400px) {
     .letter-content { padding: 25px 16px 30px; }
     .letter-content p { font-size: 14px; line-height: 1.9; }
     .letter-content h1 { font-size: 28px; }
-    .background-globos::before {
-        font-size: 30px;
-        letter-spacing: 18px;
-    }
-    .background-globos::after {
-        font-size: 25px;
-        letter-spacing: 15px;
-    }
-    .cake-wish {
-        transform: scale(0.7);
-    }
-    .wish-button {
-        padding: 10px 25px;
-        font-size: 14px;
-    }
+    .cake-wish { transform: scale(0.7); }
+    .wish-button { padding: 10px 25px; font-size: 14px; }
 }
