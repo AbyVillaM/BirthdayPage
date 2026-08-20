@@ -119,21 +119,28 @@ function startConfetti() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
+    // MENOS PARTÍCULAS EN MÓVIL
+    var esMovil = window.innerWidth < 768;
+    var cantidad = esMovil ? 80 : 200;  // 80 en móvil, 200 en escritorio
+    
     var particles = [];
     var colors = ['#ff3cac', '#ffd43b', '#61dcff', '#ff6b6b', '#51cf66', '#ff922b', '#a66cff', '#ff6b9d'];
     
-    for (var i = 0; i < 200; i++) {
+    // Tamaño más pequeño en móvil
+    var tamaño = esMovil ? 8 : 12;
+    
+    for (var i = 0; i < cantidad; i++) {
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height - canvas.height,
-            w: Math.random() * 12 + 4,
-            h: Math.random() * 8 + 3,
+            w: Math.random() * tamaño + 3,
+            h: Math.random() * tamaño * 0.6 + 2,
             color: colors[Math.floor(Math.random() * colors.length)],
-            speed: Math.random() * 4 + 2,
+            speed: Math.random() * (esMovil ? 2.5 : 4) + 1.5,
             rotation: Math.random() * 360,
-            rotationSpeed: Math.random() * 6 - 3,
+            rotationSpeed: Math.random() * (esMovil ? 4 : 6) - 2,
             wobble: Math.random() * Math.PI * 2,
-            wobbleSpeed: Math.random() * 0.05 + 0.02
+            wobbleSpeed: Math.random() * (esMovil ? 0.03 : 0.05) + 0.01
         });
     }
     
@@ -157,7 +164,7 @@ function startConfetti() {
             ctx.translate(p.x, p.y);
             ctx.rotate(p.rotation * Math.PI / 180);
             ctx.shadowColor = p.color;
-            ctx.shadowBlur = 10;
+            ctx.shadowBlur = esMovil ? 4 : 10;
             ctx.fillStyle = p.color;
             ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
             ctx.restore();
