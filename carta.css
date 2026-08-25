@@ -216,7 +216,6 @@ body {
     font-size: 19px;
     font-style: italic;
     padding-top: 25px;
-    border-top: 1px solid rgba(180, 150, 120, 0.2);
 }
 
 .signature span {
@@ -235,7 +234,6 @@ body {
 .cake-wish-container {
     margin-top: 45px;
     padding-top: 30px;
-    border-top: 1px solid rgba(180, 150, 120, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;

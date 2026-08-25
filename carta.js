@@ -111,7 +111,7 @@ function apagarVela() {
             }, 500);
             
             setTimeout(function() {
-                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! :3', 140, function() {
+                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! ⸜(˃ ᵕ ˂ )⸝', 140, function() {
                     setTimeout(function() {
                         transicion.classList.remove('active');
                         transicion.classList.add('mantener-negro');
