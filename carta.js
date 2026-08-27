@@ -26,6 +26,21 @@ function crearGlobosVerticales() {
     }
 }
 
+function crearEstrellas() {
+    var container = document.getElementById('estrellas-container');
+    if (!container) return;
+    
+    var simbolos = ['✦', '✧', '✦', '✧', '✦', '✧', '✦', '✧'];
+    var cantidad = 25;
+    
+    for (var i = 0; i < cantidad; i++) {
+        var estrella = document.createElement('div');
+        estrella.className = 'estrella-destello';
+        estrella.textContent = simbolos[i % simbolos.length];
+        container.appendChild(estrella);
+    }
+}
+
 var music = document.getElementById('bg-music-carta');
 
 try {
@@ -111,7 +126,7 @@ function apagarVela() {
             }, 500);
             
             setTimeout(function() {
-                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! ⸜(˃ ᵕ ˂ )⸝', 140, function() {
+                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! ⸜(˃ ᵕ ˂ )⸝', 80, function() {
                     setTimeout(function() {
                         transicion.classList.remove('active');
                         transicion.classList.add('mantener-negro');
@@ -129,7 +144,7 @@ function apagarVela() {
                             window.location.href = "index.html";
                         }, 1500);
                         
-                    }, 1000);
+                    }, 5000);
                 });
             }, 800);
             
@@ -137,6 +152,7 @@ function apagarVela() {
         
     }, 600);
 }
+
 function goBack() {
     try {
         if (music && !music.paused) {
@@ -149,6 +165,7 @@ function goBack() {
 
 document.addEventListener('DOMContentLoaded', function() {
     crearGlobosVerticales();
+    crearEstrellas();
     
     var title = document.querySelector('.letter-content h1');
     if (title) {
