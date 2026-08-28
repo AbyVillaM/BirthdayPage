@@ -92,7 +92,6 @@ function escribirMensaje(elemento, texto, velocidad, callback) {
     
     escribir();
 }
-
 function apagarVela() {
     var flame = document.getElementById('flame-wish');
     var button = document.getElementById('wishButton');
@@ -100,22 +99,22 @@ function apagarVela() {
     var transicion = document.getElementById('transicion-oscura');
     var textoElemento = document.getElementById('texto-mecanografiado');
     var emojiElemento = document.querySelector('.mensaje-final .emoji');
+    var mensajeFinal = document.getElementById('mensaje-final');
+    var estrellasContainer = document.getElementById('estrellas-container');
     
     if (!flame || button.disabled) return;
     
+    // Deshabilitar botón
     button.disabled = true;
+    // Solo desaparece sin movimientos raros
+    button.style.transition = 'opacity 0.4s ease';
     button.style.opacity = '0';
-    button.style.transform = 'scale(0.5)';
-    button.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    
-    setTimeout(function() {
-        button.style.display = 'none';
-    }, 500);
     
     flame.classList.add('apagada');
     
     setTimeout(function() {
         flame.style.display = 'none';
+        button.style.display = 'none';
         message.style.display = 'block';
         
         setTimeout(function() {
@@ -126,10 +125,21 @@ function apagarVela() {
             }, 500);
             
             setTimeout(function() {
-                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! ⸜(˃ ᵕ ˂ )⸝', 80, function() {
+                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades!', 80, function() {
                     setTimeout(function() {
-                        transicion.classList.remove('active');
-                        transicion.classList.add('mantener-negro');
+                        mensajeFinal.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                        mensajeFinal.style.transform = 'scale(0)';
+                        mensajeFinal.style.opacity = '0';
+                        
+                        emojiElemento.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                        emojiElemento.style.transform = 'scale(0)';
+                        emojiElemento.style.opacity = '0';
+                        
+                        if (estrellasContainer) {
+                            estrellasContainer.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                            estrellasContainer.style.opacity = '0';
+                            estrellasContainer.style.transform = 'scale(0.8)';
+                        }
                         
                         if (music) {
                             music.pause();
@@ -139,12 +149,18 @@ function apagarVela() {
                         }
                         
                         setTimeout(function() {
-                            localStorage.removeItem('musicPlaying');
-                            localStorage.removeItem('musicTime');
-                            window.location.href = "index.html";
-                        }, 1500);
+                            transicion.classList.remove('active');
+                            transicion.classList.add('mantener-negro');
+                            
+                            setTimeout(function() {
+                                localStorage.removeItem('musicPlaying');
+                                localStorage.removeItem('musicTime');
+                                window.location.href = "index.html";
+                            }, 1000);
+                            
+                        }, 1000);
                         
-                    }, 5000);
+                    }, 4000);
                 });
             }, 800);
             
@@ -152,7 +168,6 @@ function apagarVela() {
         
     }, 600);
 }
-
 function goBack() {
     try {
         if (music && !music.paused) {

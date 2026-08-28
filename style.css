@@ -737,3 +737,33 @@ body {
 #confetti-canvas {
     will-change: transform;
 }
+@media (max-width: 768px) {
+    #gift-cube {
+        animation-duration: 4s !important;
+    }
+}
+@media (max-width: 768px) {
+    #gift-wrapper::before {
+        animation-duration: 3s !important;
+        opacity: 0.2 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .gift-face {
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+    #gift-cube {
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    #confetti-canvas {
+        opacity: 0.8;
+    }
+}

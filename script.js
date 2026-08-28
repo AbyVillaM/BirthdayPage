@@ -119,28 +119,26 @@ function startConfetti() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    // MENOS PARTÍCULAS EN MÓVIL
     var esMovil = window.innerWidth < 768;
-    var cantidad = esMovil ? 80 : 200;  // 80 en móvil, 200 en escritorio
+    var cantidad = esMovil ? 60 : 200;
+    var tamanio = esMovil ? 6 : 12;
+    var velocidad = esMovil ? 1.5 : 3;
     
     var particles = [];
     var colors = ['#ff3cac', '#ffd43b', '#61dcff', '#ff6b6b', '#51cf66', '#ff922b', '#a66cff', '#ff6b9d'];
-    
-    // Tamaño más pequeño en móvil
-    var tamaño = esMovil ? 8 : 12;
     
     for (var i = 0; i < cantidad; i++) {
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height - canvas.height,
-            w: Math.random() * tamaño + 3,
-            h: Math.random() * tamaño * 0.6 + 2,
+            w: Math.random() * tamanio + 2,
+            h: Math.random() * tamanio * 0.6 + 1,
             color: colors[Math.floor(Math.random() * colors.length)],
-            speed: Math.random() * (esMovil ? 2.5 : 4) + 1.5,
+            speed: Math.random() * velocidad + 1,
             rotation: Math.random() * 360,
-            rotationSpeed: Math.random() * (esMovil ? 4 : 6) - 2,
+            rotationSpeed: Math.random() * (esMovil ? 3 : 5) - 1.5,
             wobble: Math.random() * Math.PI * 2,
-            wobbleSpeed: Math.random() * (esMovil ? 0.03 : 0.05) + 0.01
+            wobbleSpeed: Math.random() * 0.03 + 0.01
         });
     }
     
@@ -163,8 +161,10 @@ function startConfetti() {
             ctx.save();
             ctx.translate(p.x, p.y);
             ctx.rotate(p.rotation * Math.PI / 180);
-            ctx.shadowColor = p.color;
-            ctx.shadowBlur = esMovil ? 4 : 10;
+            if (!esMovil) {
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = 8;
+            }
             ctx.fillStyle = p.color;
             ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
             ctx.restore();
@@ -209,7 +209,6 @@ window.addEventListener('resize', function() {
 });
 
 window.addEventListener('load', function() {
-    // Ocultar el regalo inicialmente
     var giftWrapper = document.getElementById('gift-wrapper');
     if (giftWrapper) {
         giftWrapper.style.opacity = '0';
