@@ -125,7 +125,7 @@ function apagarVela() {
             }, 500);
             
             setTimeout(function() {
-                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades!', 80, function() {
+                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! ◡̈', 115, function() {
                     setTimeout(function() {
                         mensajeFinal.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
                         mensajeFinal.style.transform = 'scale(0)';
