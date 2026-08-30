@@ -2,13 +2,58 @@ function crearGlobosVerticales() {
     var container = document.getElementById('globos-container');
     if (!container) return;
     
-    var emojis = ['🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈', '🎈'];
+    var colores = ['#ff6b6b', '#ffd93d', '#4d96ff', '#6bcb77', '#ff6bff', '#ff9f43', '#00d2d3', '#ff4757', '#a29bfe', '#fd79a8'];
     var cantidad = 25;
     
     for (var i = 0; i < cantidad; i++) {
         var globo = document.createElement('div');
         globo.className = 'globos-vertical';
-        globo.textContent = emojis[i % emojis.length];
+        
+        var color = colores[Math.floor(Math.random() * colores.length)];
+        var size = 30 + Math.random() * 35;
+        
+        var globoBody = document.createElement('div');
+        globoBody.style.cssText = 
+            'width: ' + size + 'px;' +
+            'height: ' + (size * 1.1) + 'px;' +
+            'background: radial-gradient(ellipse at 40% 30%, ' + color + ', ' + color + 'dd);' +
+            'border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;' +
+            'box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 25px ' + color + '55;' +
+            'position: relative;' +
+            'margin: 0 auto;';
+        
+        var cuerda = document.createElement('div');
+        cuerda.style.cssText = 
+            'width: 2px;' +
+            'height: ' + (15 + Math.random() * 15) + 'px;' +
+            'background: #8a7a6a;' +
+            'margin: 0 auto;' +
+            'border-radius: 2px;';
+        
+        var nudo = document.createElement('div');
+        nudo.style.cssText = 
+            'width: 6px;' +
+            'height: 4px;' +
+            'background: ' + color + ';' +
+            'border-radius: 50%;' +
+            'margin: 0 auto;' +
+            'margin-bottom: 2px;';
+        
+        var brillo = document.createElement('div');
+        brillo.style.cssText = 
+            'position: absolute;' +
+            'top: ' + (size * 0.15) + 'px;' +
+            'left: ' + (size * 0.15) + 'px;' +
+            'width: ' + (size * 0.15) + 'px;' +
+            'height: ' + (size * 0.15) + 'px;' +
+            'background: rgba(255,255,255,0.2);' +
+            'border-radius: 50%;' +
+            'transform: rotate(-30deg);';
+        
+        globoBody.appendChild(brillo);
+        globo.appendChild(globoBody);
+        globo.appendChild(nudo);
+        globo.appendChild(cuerda);
         
         var posX = Math.random() * 95 + 2;
         globo.style.setProperty('--pos-x', posX + '%');
@@ -16,11 +61,10 @@ function crearGlobosVerticales() {
         var delay = Math.random() * 12;
         globo.style.setProperty('--delay', delay + 's');
         
-        var size = 35 + Math.random() * 40;
-        globo.style.fontSize = size + 'px';
-        
-        var duration = 10 + Math.random() * 10;
+        var duration = 12 + Math.random() * 12;
         globo.style.animationDuration = duration + 's';
+        
+        globo.style.transform = 'scale(' + (0.6 + Math.random() * 0.6) + ')';
         
         container.appendChild(globo);
     }
@@ -92,6 +136,7 @@ function escribirMensaje(elemento, texto, velocidad, callback) {
     
     escribir();
 }
+
 function apagarVela() {
     var flame = document.getElementById('flame-wish');
     var button = document.getElementById('wishButton');
@@ -104,9 +149,7 @@ function apagarVela() {
     
     if (!flame || button.disabled) return;
     
-    // Deshabilitar botón
     button.disabled = true;
-    // Solo desaparece sin movimientos raros
     button.style.transition = 'opacity 0.4s ease';
     button.style.opacity = '0';
     
@@ -125,7 +168,7 @@ function apagarVela() {
             }, 500);
             
             setTimeout(function() {
-                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades! ◡̈', 115, function() {
+                escribirMensaje(textoElemento, '¡Espero que tu deseo se haga realidad, muchas felicidades!', 115, function() {
                     setTimeout(function() {
                         mensajeFinal.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
                         mensajeFinal.style.transform = 'scale(0)';
@@ -168,6 +211,7 @@ function apagarVela() {
         
     }, 600);
 }
+
 function goBack() {
     try {
         if (music && !music.paused) {

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/images/pastel.png">
+    <link rel="icon" type="image/png" href="assets/images/fontcard.png">
     <title>¡FELICIDADES!</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <audio id="bg-music" loop>
@@ -22,7 +24,6 @@
                 <span class="reloj-sep">de</span>
                 <span id="reloj-anio">2026</span>
             </div>
-            
             <div class="reloj-hora" id="reloj-hora">
                 <span id="reloj-horas">23</span>
                 <span class="reloj-dos-puntos">:</span>
@@ -30,13 +31,11 @@
                 <span class="reloj-dos-puntos">:</span>
                 <span id="reloj-segundos">57</span>
             </div>
-            
         </div>
     </div>
 
     <div id="gift-wrapper" onclick="openGift()">
         <div class="open-label">¡Ábreme!</div>
-        
         <div class="gift-scene">
             <div id="gift-cube">
                 <div class="gift-face front">
@@ -67,33 +66,27 @@
                 </div>
             </div>
         </div>
-        <div class="click-hint"></div>
     </div>
 
     <div id="greeting-card">
-
-
-        <div class="neon-title">¡FELIZ CUMPLEAÑOS!</div>
+        <div class="neon-title">¡Ay no ya casi eres adulto!</div>
+        <div class="monito-space">
+            <img src="assets/images/cry.png" alt="Monito de fiesta" />
+        </div>
         <div class="neon-footer">¡Felices</div>
         <div class="neon-age">17</div>
         <div class="neon-footer">Vueltas al sol!</div>
-
-        <div class="card-metadata">
-            <div><h3>Para Martiza</h3> </div>
-        </div>
-
         <div class="letter-container">
             <div class="letter-glow"></div>
-            <div class="envelope" onclick="openLetter()">
+            <div class="envelope" id="envelope" onclick="abrirSobre()">
                 <div class="envelope-back"></div>
                 <div class="envelope-paper">
-                    <span>Para ti </span>
                 </div>
                 <div class="envelope-flap"></div>
                 <div class="envelope-front"></div>
                 <div class="envelope-seal"></div>
             </div>
-            <div class="envelope-label">¡Ábreme!</div>
+            <div class="envelope-label">¡Ábre el Sobre!</div>
         </div>
     </div>
 
@@ -101,4 +94,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

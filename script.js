@@ -25,46 +25,68 @@ function actualizarReloj() {
         document.getElementById('reloj-horas').textContent = String(horas).padStart(2, '0');
     }
     
-if (horas === 24) {
-    horas = 0;
-    minutos = 0;
-    segundos = 0;
-    dia = 4;
-    
-    document.getElementById('reloj-horas').textContent = '00';
-    document.getElementById('reloj-minutos').textContent = '00';
-    document.getElementById('reloj-segundos').textContent = '00';
-    document.getElementById('reloj-dia').textContent = '04';
-    
-    document.getElementById('reloj-dia').classList.add('cambiando');
-    document.querySelector('.reloj-hora').classList.add('brillante');
-    
-    relojTerminado = true;
-    setTimeout(function() {
-        terminarReloj();
-    }, 2000);
-    
-    return;
+    if (horas === 24) {
+        horas = 0;
+        minutos = 0;
+        segundos = 0;
+        dia = 4;
+        
+        document.getElementById('reloj-horas').textContent = '00';
+        document.getElementById('reloj-minutos').textContent = '00';
+        document.getElementById('reloj-segundos').textContent = '00';
+        document.getElementById('reloj-dia').textContent = '04';
+        
+        if (window._relojInterval) {
+            clearInterval(window._relojInterval);
+            window._relojInterval = null;
+        }
+        
+        var relojScreen = document.getElementById('reloj-screen');
+        if (relojScreen) {
+            relojScreen.classList.add('dorado');
+        }
+        
+        var textoEl = document.querySelector('.reloj-texto');
+        if (textoEl) {
+            textoEl.textContent = '';
+        }
+        
+        document.getElementById('reloj-dia').classList.add('cambiando');
+        document.querySelector('.reloj-hora').classList.add('brillante');
+        
+        relojTerminado = true;
+        
+        setTimeout(function() {
+            terminarReloj();
+        }, 1000);
+        
+        return;
+    }
 }
-}
+
 function terminarReloj() {
     var relojScreen = document.getElementById('reloj-screen');
     var giftWrapper = document.getElementById('gift-wrapper');
     
-    relojScreen.style.opacity = '0';
+    if (relojScreen) {
+        relojScreen.style.transition = 'opacity 0.8s ease';
+        relojScreen.style.opacity = '0';
+    }
     
     setTimeout(function() {
-        relojScreen.style.display = 'none';
+        if (relojScreen) {
+            relojScreen.style.display = 'none';
+        }
         
-        giftWrapper.style.opacity = '1';
-        giftWrapper.style.transform = 'scale(1)';
-        giftWrapper.style.animation = 'giftAppear 1.5s cubic-bezier(0.17, 0.67, 0.35, 1.35) forwards';
-        giftWrapper.style.cursor = 'pointer';
+        if (giftWrapper) {
+            giftWrapper.style.opacity = '1';
+            giftWrapper.style.transform = 'scale(1)';
+            giftWrapper.style.animation = 'giftAppear 1.5s cubic-bezier(0.17, 0.67, 0.35, 1.35) forwards';
+            giftWrapper.style.cursor = 'pointer';
+        }
         
         iniciarMusica();
-        
         startConfetti();
-        
         
     }, 500);
 }
@@ -76,7 +98,6 @@ function iniciarMusica() {
         music.play().then(function() {
             localStorage.setItem('musicPlaying', 'true');
         }).catch(function() {
-            console.log('⏳ Esperando interacción...');
         });
     }
 }
@@ -111,6 +132,7 @@ setInterval(function() {
         } catch(e) {}
     }
 }, 1000);
+
 function startConfetti() {
     var canvas = document.getElementById('confetti-canvas');
     if (!canvas) return;
@@ -189,6 +211,17 @@ function openGift() {
         card.classList.add("show");
     }, 900);
 }
+function abrirSobre() {
+    var envelope = document.getElementById('envelope');
+    if (!envelope) return;
+    if (envelope.classList.contains('open')) return;
+    
+    envelope.classList.add('open');
+    
+    setTimeout(function() {
+        window.location.href = "carta.html";
+    }, 700);
+}
 
 function openLetter() {
     try {
@@ -217,6 +250,6 @@ window.addEventListener('load', function() {
         giftWrapper.style.cursor = 'default';
     }
     
+    window._relojInterval = setInterval(actualizarReloj, 1000);
     actualizarReloj();
-    setInterval(actualizarReloj, 1000);
 });
