@@ -2,69 +2,98 @@ function crearGlobosVerticales() {
     var container = document.getElementById('globos-container');
     if (!container) return;
     
-    var colores = ['#ff6b6b', '#ffd93d', '#4d96ff', '#6bcb77', '#ff6bff', '#ff9f43', '#00d2d3', '#ff4757', '#a29bfe', '#fd79a8'];
-    var cantidad = 25;
+    var colores = [
+        '#FF1744', '#FF9100', '#FFEA00', '#00E676', '#00BCD4',
+        '#2979FF', '#D500F9', '#FF4081', '#FF6D00', '#76FF03',
+        '#18FFFF', '#E040FB', '#FFAB00', '#00E5FF', '#F50057',
+        '#FF5252', '#FFD740', '#69F0AE', '#40C4FF', '#B388FF',
+        '#FF80AB', '#FFAB91', '#B2FF59', '#84FFFF', '#EA80FC'
+    ];
+    
+    var cantidad = 50;
+    var mitad = Math.floor(cantidad / 2);
+    var posiciones = [];
+    
+    for (var i = 0; i < mitad; i++) {
+        posiciones.push(1 + Math.random() * 24);
+    }
+    
+    for (var i = 0; i < cantidad - mitad; i++) {
+        posiciones.push(75 + Math.random() * 24);
+    }
+    
+    for (var i = posiciones.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = posiciones[i];
+        posiciones[i] = posiciones[j];
+        posiciones[j] = temp;
+    }
     
     for (var i = 0; i < cantidad; i++) {
         var globo = document.createElement('div');
         globo.className = 'globos-vertical';
         
         var color = colores[Math.floor(Math.random() * colores.length)];
-        var size = 30 + Math.random() * 35;
+        var size = 20 + Math.random() * 45;
         
-        var globoBody = document.createElement('div');
-        globoBody.style.cssText = 
+        globo.innerHTML = 
+            '<div style="' +
             'width: ' + size + 'px;' +
             'height: ' + (size * 1.1) + 'px;' +
-            'background: radial-gradient(ellipse at 40% 30%, ' + color + ', ' + color + 'dd);' +
+            'background: radial-gradient(ellipse at 40% 30%, ' + color + ', ' + color + 'cc);' +
             'border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;' +
-            'box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 25px ' + color + '55;' +
+            'box-shadow: inset -5px -5px 15px rgba(0,0,0,0.08), 0 5px 25px ' + color + '44;' +
             'position: relative;' +
-            'margin: 0 auto;';
-        
-        var cuerda = document.createElement('div');
-        cuerda.style.cssText = 
-            'width: 2px;' +
-            'height: ' + (15 + Math.random() * 15) + 'px;' +
-            'background: #8a7a6a;' +
             'margin: 0 auto;' +
-            'border-radius: 2px;';
-        
-        var nudo = document.createElement('div');
-        nudo.style.cssText = 
+            'border: 1px solid rgba(255,255,255,0.05);' +
+            '">' +
+            '<div style="' +
+            'position: absolute;' +
+            'top: ' + (size * 0.12) + 'px;' +
+            'left: ' + (size * 0.12) + 'px;' +
+            'width: ' + (size * 0.2) + 'px;' +
+            'height: ' + (size * 0.2) + 'px;' +
+            'background: radial-gradient(circle, rgba(255,255,255,0.35), transparent);' +
+            'border-radius: 50%;' +
+            'transform: rotate(-30deg);' +
+            '"></div>' +
+            '<div style="' +
+            'position: absolute;' +
+            'bottom: ' + (size * 0.15) + 'px;' +
+            'right: ' + (size * 0.12) + 'px;' +
+            'width: ' + (size * 0.08) + 'px;' +
+            'height: ' + (size * 0.08) + 'px;' +
+            'background: rgba(255,255,255,0.15);' +
+            'border-radius: 50%;' +
+            '"></div>' +
+            '</div>' +
+            '<div style="' +
             'width: 6px;' +
             'height: 4px;' +
             'background: ' + color + ';' +
             'border-radius: 50%;' +
             'margin: 0 auto;' +
-            'margin-bottom: 2px;';
+            'margin-bottom: 2px;' +
+            '"></div>' +
+            '<div style="' +
+            'width: 1.5px;' +
+            'height: ' + (10 + Math.random() * 18) + 'px;' +
+            'background: rgba(180, 170, 160, 0.3);' +
+            'margin: 0 auto;' +
+            'border-radius: 2px;' +
+            '"></div>';
         
-        var brillo = document.createElement('div');
-        brillo.style.cssText = 
-            'position: absolute;' +
-            'top: ' + (size * 0.15) + 'px;' +
-            'left: ' + (size * 0.15) + 'px;' +
-            'width: ' + (size * 0.15) + 'px;' +
-            'height: ' + (size * 0.15) + 'px;' +
-            'background: rgba(255,255,255,0.2);' +
-            'border-radius: 50%;' +
-            'transform: rotate(-30deg);';
-        
-        globoBody.appendChild(brillo);
-        globo.appendChild(globoBody);
-        globo.appendChild(nudo);
-        globo.appendChild(cuerda);
-        
-        var posX = Math.random() * 95 + 2;
+        var posX = posiciones[i];
         globo.style.setProperty('--pos-x', posX + '%');
         
-        var delay = Math.random() * 12;
+        var delay = Math.random() * 18;
         globo.style.setProperty('--delay', delay + 's');
         
-        var duration = 12 + Math.random() * 12;
+        var duration = 10 + Math.random() * 18;
         globo.style.animationDuration = duration + 's';
         
-        globo.style.transform = 'scale(' + (0.6 + Math.random() * 0.6) + ')';
+        var scale = 0.4 + Math.random() * 0.9;
+        globo.style.transform = 'scale(' + scale + ')';
         
         container.appendChild(globo);
     }
