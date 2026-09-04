@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="assets/images/pastel.png">
@@ -8,104 +7,118 @@
     <title>¡FELICIDADES!</title>
     <link rel="stylesheet" href="carta.css">
 </head>
-
 <body>
     <div class="background-globos" id="globos-container"></div>
-
     <audio id="bg-music-carta" loop>
         <source src="assets/music/cumpleaños.mp3" type="audio/mpeg">
     </audio>
-
     <main class="page">
-        <section class="letter">
-            <div class="letter-shine"></div>
+        <div class="letter" id="letter">
+            <div class="letter-content" id="letter-content">
+                <div class="rayas"></div>
+                <div class="margen-rojo"></div>
 
-            <div class="letter-content">
-                <div class="header-deco"></div>
-                <p>
-                    No sabía que regalarte hasta que tuve una idea y decidí crear esto para ti porque es una combinacion
-                    de mis dos mejores habilidades además tampoco quería dejar pasar este día sin darte un pequeño
-                    detalle. Me siento feliz de celebrar tu cumpleaños y aunque nuestra amistad no tenga muchos años,
-                    disfruto mucho nuestras conversaciones, me siento muy cómoda cada vez que apareces. Gracias por
-                    compartir conmigo parte de tu vida, tus pensamientos, experiencias y la buena energía que siempre
-                    transmites. Esa confianza que hemos construido con el tiempo quiero que sepas que la valoro
-                    recíprocamente.
-                </p>
+                <div class="page-content active-page" id="page-1">
+                    <p>
+                        No sabía que regalarte hasta que tuve una idea y decidí crear esto para ti porque es una combinacion
+                        de mis dos mejores habilidades además tampoco quería dejar pasar este día sin darte un pequeño
+                        detalle. Me siento feliz de celebrar tu cumpleaños y aunque nuestra amistad no tenga muchos años,
+                        disfruto mucho nuestras conversaciones, me siento muy cómoda cada vez que apareces. Gracias por
+                        compartir conmigo parte de tu vida, tus pensamientos, experiencias y la buena energía que siempre
+                        transmites. Esa confianza que hemos construido con el tiempo quiero que sepas que la valoro
+                        recíprocamente.
+                    </p>
 
-                <p>
-                    Se que los 17 son una etapa muy extraña, un puente confuso entre la infancia y las expectativas del
-                    mundo adulto, donde te bombardean con que ya tienes que saber qué hacer con tu vida, a qué te vas a
-                    dedicar, hacia dónde quieres llegar o saber exactamente quién eres, cuando la realidad es que
-                    todavía tienes mucho por descubrir. Y está bien equivocarte, cambiar de opinión, sentirte perdida de
-                    vez en cuando y no tener todas las respuestas todavía. Con el amor pasa algo similar. Puede llegar
-                    de maneras muy bonitas pero también puede ser intenso, confuso e incluso doler. Las primeras
-                    ilusiones, los desamores o las mariposas en el estómago son parte del viaje, pero recuerda que el
-                    amor más importante que estás construyendo ahora es el propio. No tengas miedo de sentir, de querer
-                    bonito, ni de entregarte, pero tampoco aceptes menos de lo que vales o mereces. Tampoco le temas a estar
-                    sola, recuerda que la soledad también nos regala la oportunidad de conocernos de una manera que
-                    nadie más podría enseñarnos.
-                </p>
-
-                <p>
-                    Quiero que disfrutes estos años, que te permitas descubrir qué te hace feliz, qué te emociona y
-                    dejes ir esas cosas que ya no quieres en tu vida. Disfruta del camino, guarda momentos que algún día
-                    te hagan sonreír al recordarlos, que persigas tus metas, que te equivoques, que vuelvas a intentarlo
-                    y que nunca dejes de echarle ganas a aquello que te importa, pero sobre todo quiero que tengas
-                    paciencia contigo misma, no necesitas convertirte en la persona que lo demás esperan que seas.
-                    Tienes mucho tiempo para crecer, cambiar, aprender y descubrir quién quieres ser. Y si algún día
-                    todo esto es demasiado para ti, si tienes miedo, necesitas un consejo o simplemente quieres hablar
-                    sin tener que fingir que todo esta bien. Escríbeme, en mí siempre tendrás un espacio seguro, alguien
-                    que te escuchará sin filtros y sin prejuicios, acompañándote cuando lo necesites y recordándote lo
-                    mucho que vales incluso cuando lo olvides.
-                </p>
-
-                <p>
-                    A veces olvido por completo que nuestras realidades y experiencias son muy distintas, y me
-                    disculpo si mis comparaciones o mis historias te hicieron sentir fuera de lugar. Pero quiero que
-                    sepas que mis detalles, el tiempo que paso contigo, las veces que hemos salido y las cosas que hago
-                    o hice por ti son simplemente parte de cómo entiendo la amistad, de cómo soy yo en realidad. Y eso
-                    es justamente lo que quería demostrarte con esto así que espero de corazón que te guste mi regalo y
-                    que puedas recibirlo con el mismo cariño con el que te lo doy.
-                </p>
-
-                <p>
-                    Te deseo un año lleno de momentos felices, de personas que te sumen, de aprendizajes y experiencias
-                    que te hagan crecer. Espero que este nuevo año de vida te traiga muchas cosas bonitas y que puedas
-                    cumplir poco a poco todo aquello que te propongas. ¡Te mando un fuerte abrazo y mis mejores deseos!
-                </p>
-
-                <div class="signature">
-                    Con cariño ∆by <span>♡</span>
-                </div>
-
-                <div class="cake-wish-container">
-                    <div class="cake-wish-wrapper">
-                        <div class="cake-wish">
-                            <div class="cake-wish-top"></div>
-                            <div class="cake-wish-body"></div>
-                            <div class="cake-wish-candle" id="candle-wish">
-                                <div class="cake-wish-flame" id="flame-wish"></div>
-                            </div>
-                            <div class="cake-wish-decoration"></div>
-                        </div>
-                    </div>
-
-                    <br>
-                    <div>
-                        <h5>Ahora piensa en eso que más quieres, respira
-                            profundo, suelta todo lo demás, sopla y pide un deseo.</h5>
-                    </div>
-                    <br>
-                    <button class="wish-button" id="wishButton" onclick="apagarVela()">
-                        ¡Picale aquí para pedir un deseo!
-                    </button>
-
-                    <p class="wish-message" id="wishMessage" style="display:none;">
+                    <p>
+                        Se que los 17 son una etapa muy extraña, un puente confuso entre la infancia y las expectativas del
+                        mundo adulto, donde te bombardean con que ya tienes que saber qué hacer con tu vida, a qué te vas a
+                        dedicar, hacia dónde quieres llegar o saber exactamente quién eres, cuando la realidad es que
+                        todavía tienes mucho por descubrir. Y está bien equivocarte, cambiar de opinión, sentirte perdida de
+                        vez en cuando y no tener todas las respuestas todavía. Con el amor pasa algo similar. Puede llegar
+                        de maneras muy bonitas pero también puede ser intenso, confuso e incluso doler. Las primeras
+                        ilusiones, los desamores o las mariposas en el estómago son parte del viaje, pero recuerda que el
+                        amor más importante que estás construyendo ahora es el propio. No tengas miedo de sentir, de querer
+                        bonito, ni de entregarte, pero tampoco aceptes menos de lo que vales o mereces. Tampoco le temas a estar
+                        sola, recuerda que la soledad también nos regala la oportunidad de conocernos de una manera que
+                        nadie más podría enseñarnos.
                     </p>
                 </div>
+
+                <div class="page-content" id="page-2" style="display:none;">
+                    <p>
+                        Quiero que disfrutes estos años, que te permitas descubrir qué te hace feliz, qué te emociona y
+                        dejes ir esas cosas que ya no quieres en tu vida. Disfruta del camino, guarda momentos que algún día
+                        te hagan sonreír al recordarlos, que persigas tus metas, que te equivoques, que vuelvas a intentarlo
+                        y que nunca dejes de echarle ganas a aquello que te importa, pero sobre todo quiero que tengas
+                        paciencia contigo misma, no necesitas convertirte en la persona que lo demás esperan que seas.
+                        Tienes mucho tiempo para crecer, cambiar, aprender y descubrir quién quieres ser. Y si algún día
+                        todo esto es demasiado para ti, si tienes miedo, necesitas un consejo o simplemente quieres hablar
+                        sin tener que fingir que todo esta bien. Escríbeme, en mí siempre tendrás un espacio seguro, alguien
+                        que te escuchará sin filtros y sin prejuicios, acompañándote cuando lo necesites y recordándote lo
+                        mucho que vales incluso cuando lo olvides.
+                    </p>
+
+                    <p>
+                        A veces olvido por completo que nuestras realidades y experiencias son muy distintas, y me
+                        disculpo si mis comparaciones o mis historias te hicieron sentir fuera de lugar. Pero quiero que
+                        sepas que mis detalles, el tiempo que paso contigo, las veces que hemos salido y las cosas que hago
+                        o hice por ti son simplemente parte de cómo entiendo la amistad, de cómo soy yo en realidad. Y eso
+                        es justamente lo que quería demostrarte con esto así que espero de corazón que te guste mi regalo y
+                        que puedas recibirlo con el mismo cariño con el que te lo doy.
+                    </p>
+                </div>
+
+                <div class="page-content" id="page-3" style="display:none;">
+                    <p>
+                        Te deseo un año lleno de momentos felices, de personas que te sumen, de aprendizajes y experiencias
+                        que te hagan crecer. Espero que este nuevo año de vida te traiga muchas cosas bonitas y que puedas
+                        cumplir poco a poco todo aquello que te propongas. ¡Te mando un fuerte abrazo y mis mejores deseos!
+                    </p>
+
+                    <div class="signature">
+                        Con cariño ∆by <span>♡</span>
+                    </div>
+
+                    <div class="cake-wish-container">
+                        <div class="cake-wish-wrapper">
+                            <div class="cake-wish">
+                                <div class="cake-wish-top"></div>
+                                <div class="cake-wish-body"></div>
+                                <div class="cake-wish-candle" id="candle-wish">
+                                    <div class="cake-wish-flame" id="flame-wish"></div>
+                                </div>
+                                <div class="cake-wish-decoration"></div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div>
+                            <h5>Ahora piensa en eso que más quieres, respira
+                                profundo, suelta todo lo demás, sopla y pide un deseo.</h5>
+                        </div>
+                        <br>
+                        <button class="wish-button" id="wishButton" onclick="apagarVela()">
+                            ¡Picale aquí para pedir un deseo!
+                        </button>
+
+                        <p class="wish-message" id="wishMessage" style="display:none;">
+                        </p>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <div class="page-nav" id="pageNav">
+                <button class="page-btn page-prev" id="pagePrev" onclick="paginaAnterior()" style="display:none;">
+                    <span class="arrow">◀</span> Anterior
+                </button>
+                <span class="page-indicator" id="pageIndicator">1 / 3</span>
+                <button class="page-btn page-next" id="pageNext" onclick="siguientePagina()">
+                    Siguiente <span class="arrow">▶</span>
+                </button>
+            </div>
+        </div>
     </main>
+
     <div id="transicion-oscura">
         <div class="circulo-negro"></div>
         <div class="estrellas-container" id="estrellas-container"></div>
@@ -114,7 +127,7 @@
             <span class="texto-mecanografiado" id="texto-mecanografiado"></span>
         </div>
     </div>
+
     <script src="carta.js"></script>
 </body>
-
 </html>

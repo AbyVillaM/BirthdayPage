@@ -8,8 +8,8 @@ body {
     min-height: 100vh;
     overflow: hidden;
     font-family: 'Georgia', 'Times New Roman', serif;
-    color: #1a0e08;
-    background: #000000;
+    color: #2d1a0e;
+    background: #1a0a0a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,18 +24,33 @@ body {
 * {
     scrollbar-width: none;
 }
-
 .letter {
     position: relative;
     width: min(92vw, 680px);
-    max-height: 85vh;
-    overflow-y: auto;
-    border-radius: 4px;
-    background: #ffffff;
-    border: 1px solid rgba(200, 195, 190, 0.15);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15), 0 5px 20px rgba(0, 0, 0, 0.05);
+    height: 85vh;
+    max-height: 700px;
+    overflow: hidden;
+    border-radius: 4px 4px 8px 8px;
+    background: 
+        radial-gradient(ellipse at 15% 20%, rgba(160, 120, 80, 0.06), transparent 25%),
+        radial-gradient(ellipse at 85% 60%, rgba(140, 100, 60, 0.05), transparent 20%),
+        radial-gradient(ellipse at 45% 85%, rgba(180, 140, 100, 0.04), transparent 18%),
+        radial-gradient(ellipse at 70% 15%, rgba(150, 110, 70, 0.04), transparent 22%),
+        radial-gradient(ellipse at 10% 75%, rgba(170, 130, 90, 0.03), transparent 15%),
+        linear-gradient(170deg, 
+            #faf0d7 0%,
+            #f5e8ca 25%,
+            #f0dfbe 50%,
+            #f5e8ca 75%,
+            #faf0d7 100%
+        );
+    border: 1px solid rgba(180, 160, 130, 0.15);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        inset 0 0 40px rgba(200, 180, 150, 0.05);
     transform-origin: center center;
-    animation: rollOpen 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: rollOpen 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
     z-index: 2;
     opacity: 0;
 }
@@ -45,11 +60,25 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(135deg, transparent 50%, rgba(200, 195, 190, 0.06) 50%);
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, transparent 45%, rgba(180, 160, 130, 0.08) 50%, rgba(200, 180, 160, 0.05) 100%);
     border-radius: 0 0 4px 0;
     z-index: 5;
+    pointer-events: none;
+}
+
+.letter::after {
+    content: '';
+    position: absolute;
+    top: 12%;
+    right: 6%;
+    width: 140px;
+    height: 90px;
+    background: radial-gradient(ellipse, rgba(180, 150, 110, 0.07), transparent 70%);
+    border-radius: 50%;
+    transform: rotate(15deg);
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -67,78 +96,107 @@ body {
     20% { opacity: 1; transform: scaleY(0.1) scaleX(0.8); }
     50% { transform: scaleY(0.6) scaleX(1); }
     80% { transform: scaleY(1.02) scaleX(1); }
-    100% { opacity: 1; transform: scaleY(1) scaleX(1); border-radius: 4px; }
+    100% { opacity: 1; transform: scaleY(1) scaleX(1); border-radius: 4px 4px 8px 8px; }
 }
 
 .letter-content {
     position: relative;
-    padding: 45px 50px 45px 55px;
+    padding: 30px 40px 70px 45px;
     text-align: center;
     z-index: 3;
+    height: 100%;
+    overflow: hidden;
+}
+.letter-content .rayas {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    background: repeating-linear-gradient(
+        transparent 0px,
+        transparent 28px,
+        rgba(180, 180, 160, 0.10) 28px,
+        rgba(180, 180, 160, 0.10) 29px
+    );
+    z-index: 0;
+    pointer-events: none;
+}
+.letter-content .margen-rojo {
+    position: absolute;
+    top: 28px;
+    left: 20px;
+    bottom: 60px;
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(200, 80, 80, 0.15) 0px,
+        rgba(200, 80, 80, 0.15) 28px,
+        transparent 28px,
+        transparent 29px
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+.page-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
 }
 
-.letter-content h1 {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    font-size: clamp(30px, 5.5vw, 44px);
-    font-weight: 700;
-    color: #000000;
-    margin-bottom: 5px;
-    line-height: 1.2;
-    letter-spacing: 0.5px;
-}
-
-.letter-content h2 {
-    margin-top: 5px;
-    color: #000000;
-    font-size: 20px;
-    font-weight: normal;
-    font-style: italic;
-    font-family: 'Georgia', 'Times New Roman', serif;
-}
-
-.separator {
-    margin: 18px 0 15px;
-    color: #000000;
-    font-size: 18px;
-    letter-spacing: 6px;
-    opacity: 0.15;
+.page-content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 .letter-content p {
-    margin: 14px auto;
+    margin: 0 auto 10px auto;
     max-width: 520px;
-    color: #000000;
-    font-size: 16.5px;
-    line-height: 2.1;
+    color: #2d1a0e;
+    font-size: 16px;
+    line-height: 28px;
     text-align: justify;
     text-indent: 28px;
     letter-spacing: 0.3px;
     font-family: 'Georgia', 'Times New Roman', serif;
     font-weight: 400;
+    position: relative;
+    z-index: 2;
+    padding-left: 0;
 }
 
 .letter-content p:first-of-type {
     text-indent: 28px;
+    margin-top: 2px;
 }
 
+.letter-content .page-content {
+    padding-top: 2px;
+}
 .signature {
-    margin-top: -15px;
-    color: #000000;
-    font-size: 18px;
+    margin-top: 20px;
+    color: #4a3228;
+    font-size: 19px;
     font-style: italic;
     font-family: 'Georgia', 'Times New Roman', serif;
     text-align: center;
-    padding-top: 0;
+    padding-top: 10px;
     border-top: none;
     letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
 }
 
 .signature span {
     display: inline-block;
     margin-top: 2px;
-    color: #c44a6a;
+    color: #a04050;
     font-size: 34px;
-    text-shadow: 0 2px 6px rgba(180, 60, 80, 0.06);
+    text-shadow: 0 2px 6px rgba(160, 60, 80, 0.1);
     animation: heartPulse 1.5s infinite;
 }
 
@@ -146,7 +204,6 @@ body {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.15); }
 }
-
 .background-globos {
     position: fixed;
     inset: 0;
@@ -184,14 +241,15 @@ body {
     position: relative;
     z-index: 1;
 }
-
 .cake-wish-container {
-    margin-top: 50px;
+    margin-top: 30px;
     padding-top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: none;
+    border-top: 1px solid rgba(180, 160, 140, 0.12);
+    position: relative;
+    z-index: 2;
 }
 
 .cake-wish-wrapper {
@@ -356,7 +414,6 @@ body {
 .monito-der img {
     transform: scaleX(-1);
 }
-
 .wish-button {
     display: inline-block;
     padding: 14px 40px;
@@ -392,7 +449,7 @@ body {
 .wish-message {
     margin-top: 15px;
     font-size: 20px;
-    color: #000000;
+    color: #3d2818;
     font-weight: bold;
     animation: messagePop 0.6s cubic-bezier(0.17, 0.67, 0.35, 1.35) forwards;
 }
@@ -401,7 +458,69 @@ body {
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+.page-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    padding: 6px 18px;
+    border-radius: 25px;
+    border: 1px solid rgba(109, 76, 42, 0.1);
+}
 
+.page-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    color: #6d4c2a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: none;
+    background: transparent;
+    letter-spacing: 0.5px;
+}
+
+.page-btn:hover {
+    background: rgba(109, 76, 42, 0.1);
+}
+
+.page-btn .arrow {
+    font-size: 13px;
+}
+
+.page-prev:hover .arrow {
+    transform: translateX(-2px);
+}
+
+.page-next:hover .arrow {
+    transform: translateX(2px);
+}
+
+.page-indicator {
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    color: rgba(109, 76, 42, 0.5);
+    letter-spacing: 1px;
+    min-width: 35px;
+    text-align: center;
+}
+
+.page-btn:disabled,
+.page-btn.oculto {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 #transicion-oscura {
     position: fixed;
     inset: 0;
@@ -572,18 +691,45 @@ body {
     60% { opacity: 0.8; transform: scale(0.9) rotate(270deg); text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
     100% { opacity: 0; transform: scale(0.3) rotate(360deg); text-shadow: 0 0 10px rgba(255, 255, 255, 0); }
 }
-
 @media (max-width: 480px) {
-    .letter-content { padding: 25px 15px 30px 18px !important; }
-    .letter-content h1 { font-size: 24px !important; }
-    .letter-content p { font-size: 14px !important; line-height: 1.9 !important; text-indent: 15px !important; }
-    .letter { width: 98vw !important; border-radius: 4px !important; max-height: 90vh !important; }
+    .letter-content { padding: 20px 15px 60px 15px !important; }
+    .letter-content p { 
+        font-size: 14px !important; 
+        line-height: 26px !important; 
+        text-indent: 15px !important;
+        max-width: 100% !important;
+        padding-left: 5px;
+    }
+    .letter { width: 98vw !important; border-radius: 4px !important; max-height: 90vh !important; height: 80vh !important; }
+    .letter-content .margen-rojo { left: 10px; }
+    .letter-content .rayas { left: 0; right: 0; }
     .monito-imagen img { width: 55px; }
     .cake-wish-wrapper { gap: 5px; }
     .cake-wish { transform: scale(0.8); }
     .texto-mecanografiado { font-size: 26px; }
     #transicion-oscura .mensaje-final .emoji { font-size: 50px; }
-    .wish-button { padding: 10px 20px; font-size: 13px; }
+    .page-nav { bottom: 10px; padding: 4px 12px; gap: 8px; }
+    .page-btn { font-size: 11px; padding: 4px 8px; }
+    .page-indicator { font-size: 11px; min-width: 30px; }
+    .letter::after { width: 80px; height: 60px; top: 8%; right: 4%; }
+    .wish-button {
+        padding: 8px 16px !important;
+        font-size: 12px !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .letter-content p { 
+        font-size: 13px !important; 
+        line-height: 24px !important;
+        text-indent: 12px !important;
+    }
+    .letter-content { padding: 15px 10px 55px 10px !important; }
+    .wish-button {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+    }
 }
 
 body {

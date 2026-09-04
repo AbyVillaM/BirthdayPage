@@ -250,10 +250,66 @@ function goBack() {
     } catch(e) {}
     window.location.href = "index.html";
 }
+var paginaActual = 1;
+var totalPaginas = 3;
+
+function actualizarNavegacion() {
+    var prevBtn = document.getElementById('pagePrev');
+    var nextBtn = document.getElementById('pageNext');
+    var indicator = document.getElementById('pageIndicator');
+    
+    if (!prevBtn || !nextBtn || !indicator) return;
+    
+    indicator.textContent = paginaActual + ' / ' + totalPaginas;
+    
+    if (paginaActual <= 1) {
+        prevBtn.style.display = 'none';
+    } else {
+        prevBtn.style.display = 'flex';
+    }
+    
+    if (paginaActual >= totalPaginas) {
+        nextBtn.style.display = 'none';
+    } else {
+        nextBtn.style.display = 'flex';
+    }
+}
+
+function siguientePagina() {
+    if (paginaActual >= totalPaginas) return;
+    
+    var paginaActualElement = document.getElementById('page-' + paginaActual);
+    var paginaSiguienteElement = document.getElementById('page-' + (paginaActual + 1));
+    
+    if (!paginaActualElement || !paginaSiguienteElement) return;
+    
+    paginaActualElement.style.display = 'none';
+    paginaSiguienteElement.style.display = 'block';
+    
+    paginaActual++;
+    actualizarNavegacion();
+}
+
+function paginaAnterior() {
+    if (paginaActual <= 1) return;
+    
+    var paginaActualElement = document.getElementById('page-' + paginaActual);
+    var paginaAnteriorElement = document.getElementById('page-' + (paginaActual - 1));
+    
+    if (!paginaActualElement || !paginaAnteriorElement) return;
+    
+    paginaActualElement.style.display = 'none';
+    paginaAnteriorElement.style.display = 'block';
+    
+    paginaActual--;
+    actualizarNavegacion();
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     crearGlobosVerticales();
     crearEstrellas();
+    
+    actualizarNavegacion();
     
     var title = document.querySelector('.letter-content h1');
     if (title) {
